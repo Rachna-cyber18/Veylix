@@ -21,8 +21,9 @@ COLORS = {"GREEN": ("#1E8E52", "#E4F5EB"), "YELLOW": ("#A97600", "#FFF3CF"),
 
 st.markdown("""<style>
 .block-container{max-width:1150px;padding-top:2rem}
-.vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#12263A;line-height:1.15;
-  white-space:normal;overflow-wrap:break-word;word-break:break-word;margin:0}
+.vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#12263A;line-height:1.4;
+  white-space:normal;overflow-wrap:break-word;word-break:break-word;margin:0;padding:.15em 0;
+  letter-spacing:.015em;font-family:"Segoe UI",Arial,sans-serif;display:block;overflow:visible}
 .vx-sub{color:#44576A;margin:.3rem 0 .8rem;font-size:clamp(.85rem, 2.5vw, 1rem)}
 @media (max-width: 480px){
   .block-container{padding-left:1rem;padding-right:1rem}
