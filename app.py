@@ -21,8 +21,12 @@ COLORS = {"GREEN": ("#1E8E52", "#E4F5EB"), "YELLOW": ("#A97600", "#FFF3CF"),
 
 st.markdown("""<style>
 .block-container{max-width:1150px;padding-top:2rem}
-.vx-title{font-size:2.4rem;font-weight:800;color:#12263A;line-height:1.1}
-.vx-sub{color:#44576A;margin:.3rem 0 .8rem}
+.vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#12263A;line-height:1.15;
+  white-space:normal;overflow-wrap:break-word;word-break:break-word;margin:0}
+.vx-sub{color:#44576A;margin:.3rem 0 .8rem;font-size:clamp(.85rem, 2.5vw, 1rem)}
+@media (max-width: 480px){
+  .block-container{padding-left:1rem;padding-right:1rem}
+}
 .vx-note{background:#FFFFFF;border:1px solid #D5DEE8;border-left:5px solid #0E7C86;border-radius:8px;padding:10px 14px;color:#33475B;font-size:.9rem;margin-bottom:1rem}
 .panel-h{font-weight:700;font-size:1.05rem;color:#12263A;margin:.2rem 0 .6rem}
 .hl{color:#0B5CAD;text-decoration:underline;font-weight:600;word-break:break-all}
