@@ -36,8 +36,9 @@ def vx_logo(size, grad_id):
 
 st.markdown("""<style>
 .stApp{
-  background: linear-gradient(180deg, #0B3E73 0%, #0B3E73 180px, #F4F6F8 180px, #F4F6F8 100%);
+  background: linear-gradient(135deg, #1E88D6 0%, #0B3E73 100%);
   background-attachment: fixed;
+  min-height:100vh;
 }
 .block-container{max-width:1150px;padding-top:2rem}
 .vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#FFFFFF;line-height:1.4;
@@ -47,37 +48,43 @@ st.markdown("""<style>
 @media (max-width: 480px){
   .block-container{padding-left:1rem;padding-right:1rem}
 }
-.vx-note{background:#FFFFFF;border:1px solid #D5DEE8;border-left:5px solid #1769AA;border-radius:8px;padding:10px 14px;color:#2C4257;font-size:.9rem;margin-bottom:1rem}
-.panel-h{font-weight:700;font-size:1.05rem;color:#0B3E73;margin:.2rem 0 .6rem}
-.hl{color:#1769AA;text-decoration:underline;font-weight:600;word-break:break-all}
-.wa-bg{background:#E5DDD5;border-radius:14px;padding:18px}
+.vx-note{background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);border-left:5px solid #7BC4FF;border-radius:8px;padding:10px 14px;color:#E7EEF6;font-size:.9rem;margin-bottom:1rem}
+.panel-h{font-weight:700;font-size:1.05rem;color:#E7EEF6;margin:.2rem 0 .6rem}
+.hl{color:#7BC4FF;text-decoration:underline;font-weight:600;word-break:break-all}
+.wa-bg{background:rgba(229,221,213,0.85);border-radius:14px;padding:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .wa-bubble{background:#DCF8C6;color:#1c1c1c;border-radius:10px 10px 10px 2px;padding:10px 12px;line-height:1.45;max-width:92%}
 .wa-who{font-weight:700;color:#128C7E;font-size:.82rem;margin-bottom:3px}
 .wa-ts{text-align:right;font-size:.7rem;color:#667;margin-top:4px}
-.gm{background:#fff;border:1px solid #D5DEE8;border-radius:12px;overflow:hidden;color:#1c1c1c}
+.gm{background:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.4);border-radius:12px;overflow:hidden;color:#1c1c1c;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .gm-top{background:#F6F8FC;border-bottom:1px solid #E3E8EF;padding:9px 14px;font-size:.85rem;color:#3C4858}
 .gm-body{padding:14px;line-height:1.5}
 .gm-subj{font-weight:700;font-size:1.05rem}
 .gm-from{color:#5F6B7A;font-size:.8rem;margin-bottom:10px}
-.sms-bg{background:#fff;border:1px solid #D5DEE8;border-radius:14px;padding:16px;color:#111}
+.sms-bg{background:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.4);border-radius:14px;padding:16px;color:#111;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .sms-who{text-align:center;color:#667;font-size:.8rem;margin-bottom:10px}
 .sms-bubble{background:#E9E9EB;border-radius:18px 18px 18px 4px;padding:10px 14px;display:inline-block;max-width:92%;line-height:1.45}
-.sm{background:#fff;border:1px solid #D5DEE8;border-radius:12px;padding:14px;color:#1c1c1c;line-height:1.5}
+.sm{background:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.4);border-radius:12px;padding:14px;color:#1c1c1c;line-height:1.5;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .sm-head{display:flex;gap:10px;align-items:center;margin-bottom:8px;font-weight:700}
 .avatar{width:38px;height:38px;border-radius:50%;background:#7B5CD6;color:#fff;display:flex;align-items:center;justify-content:center}
 .sm-foot{color:#667;font-size:.85rem;margin-top:10px}
-.badge{display:inline-block;background:#0B3E73;color:#fff;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px}
-.empty{border:2px dashed #B8C6D4;border-radius:14px;padding:38px 16px;text-align:center;color:#5B6E80}
-.url-box{background:#fff;border:1px dashed #1769AA;border-radius:10px;padding:10px 14px;font-family:Consolas,monospace;word-break:break-all;color:#0B3E73}
+.badge{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px;border:1px solid rgba(255,255,255,0.3)}
+.stTabs [data-baseweb="tab-list"]{background:rgba(255,255,255,0.1);border-radius:10px;padding:4px}
+.stTabs [data-baseweb="tab"]{color:#C3D4E2}
+.stTabs [aria-selected="true"]{color:#fff}
+.stSelectbox label, .stTextInput label{color:#C3D4E2 !important}
+div[data-testid="stMarkdownContainer"] p{color:#E7EEF6}
+div[data-testid="stMarkdownContainer"] li{color:#E7EEF6}
+.empty{border:2px dashed rgba(255,255,255,0.35);border-radius:14px;padding:38px 16px;text-align:center;color:#C3D4E2}
+.url-box{background:rgba(255,255,255,0.15);border:1px dashed #7BC4FF;border-radius:10px;padding:10px 14px;font-family:Consolas,monospace;word-break:break-all;color:#E7EEF6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .result{border-radius:14px;padding:18px 22px;border-left:12px solid;margin-top:14px}
 .res-title{font-size:2.1rem;font-weight:800;line-height:1.15}
-.score{font-size:1.1rem;font-weight:700;color:#0B3E73;margin-top:4px}
+.score{font-size:1.1rem;font-weight:700;color:#E7EEF6;margin-top:4px}
 .bar{height:12px;background:rgba(0,0,0,.09);border-radius:8px;margin-top:10px;overflow:hidden}
 .bar div{height:100%}
-.reasons{margin:.2rem 0 .6rem;padding-left:1.2rem;color:#0B3E73}
-.pts{background:#0B3E73;color:#fff;border-radius:6px;padding:0 7px;font-size:.78rem;margin-left:6px}
-.rec{background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 16px;font-weight:600;color:#0B3E73}
-.gate{background:#0B3E73;color:#fff;border-radius:12px;padding:12px 16px;font-weight:600;margin-top:12px}
+.reasons{margin:.2rem 0 .6rem;padding-left:1.2rem;color:#E7EEF6}
+.pts{background:rgba(255,255,255,0.2);color:#fff;border-radius:6px;padding:0 7px;font-size:.78rem;margin-left:6px}
+.rec{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:10px;padding:12px 16px;font-weight:600;color:#E7EEF6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gate{background:rgba(255,255,255,0.2);color:#fff;border-radius:12px;padding:12px 16px;font-weight:600;margin-top:12px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3)}
 </style>""", unsafe_allow_html=True)
 
 
