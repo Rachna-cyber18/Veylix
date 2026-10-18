@@ -10,6 +10,9 @@ from rules import SAMPLE_MESSAGES
 from url_analyzer import extract_url
 
 st.set_page_config(page_title="Veylix", page_icon="🛡️", layout="wide")
+# Note: the browser-tab icon above stays an emoji (Streamlit needs an emoji, a local image
+# file, or a URL for page_icon — it can't take inline SVG). The main on-page logo below uses
+# the custom "sunset shield + check" design instead.
 
 SENDERS = {"WhatsApp": "+00 00000 00000 (unknown number)",
            "Gmail": "support@notice-center.example",
@@ -19,18 +22,34 @@ ICONS = {"WhatsApp": "📱", "Gmail": "✉️", "SMS": "💬", "Social Media": "
 COLORS = {"GREEN": ("#1E8E52", "#E4F5EB"), "YELLOW": ("#A97600", "#FFF3CF"),
           "RED": ("#D0303B", "#FDE7E9")}
 
+def vx_logo(size, grad_id):
+    """Inline SVG for the Veylix shield-check logo (sunset gradient), reusable at any size."""
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 48 48" '
+            f'style="vertical-align:-{int(size*0.22)}px;margin-right:6px;flex-shrink:0">'
+            f'<defs><linearGradient id="{grad_id}" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/>'
+            f'<stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs>'
+            f'<path d="M24 4 L42 11 V22 C42 33 34.5 41.5 24 44 C13.5 41.5 6 33 6 22 V11 Z" '
+            f'fill="url(#{grad_id})"/>'
+            f'<path d="M16 24 L21.5 29.5 L33 17" stroke="#4A3A50" stroke-width="3.2" fill="none" '
+            f'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
 st.markdown("""<style>
+.stApp{
+  background: linear-gradient(180deg, #0B3E73 0%, #0B3E73 180px, #F4F6F8 180px, #F4F6F8 100%);
+  background-attachment: fixed;
+}
 .block-container{max-width:1150px;padding-top:2rem}
-.vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#12263A;line-height:1.4;
+.vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#FFFFFF;line-height:1.4;
   white-space:normal;overflow-wrap:break-word;word-break:break-word;margin:0;padding:.15em 0;
   letter-spacing:.015em;font-family:"Segoe UI",Arial,sans-serif;display:block;overflow:visible}
-.vx-sub{color:#44576A;margin:.3rem 0 .8rem;font-size:clamp(.85rem, 2.5vw, 1rem)}
+.vx-sub{color:#BBD3EA;margin:.3rem 0 .8rem;font-size:clamp(.85rem, 2.5vw, 1rem)}
 @media (max-width: 480px){
   .block-container{padding-left:1rem;padding-right:1rem}
 }
-.vx-note{background:#FFFFFF;border:1px solid #D5DEE8;border-left:5px solid #0E7C86;border-radius:8px;padding:10px 14px;color:#33475B;font-size:.9rem;margin-bottom:1rem}
-.panel-h{font-weight:700;font-size:1.05rem;color:#12263A;margin:.2rem 0 .6rem}
-.hl{color:#0B5CAD;text-decoration:underline;font-weight:600;word-break:break-all}
+.vx-note{background:#FFFFFF;border:1px solid #D5DEE8;border-left:5px solid #1769AA;border-radius:8px;padding:10px 14px;color:#2C4257;font-size:.9rem;margin-bottom:1rem}
+.panel-h{font-weight:700;font-size:1.05rem;color:#0B3E73;margin:.2rem 0 .6rem}
+.hl{color:#1769AA;text-decoration:underline;font-weight:600;word-break:break-all}
 .wa-bg{background:#E5DDD5;border-radius:14px;padding:18px}
 .wa-bubble{background:#DCF8C6;color:#1c1c1c;border-radius:10px 10px 10px 2px;padding:10px 12px;line-height:1.45;max-width:92%}
 .wa-who{font-weight:700;color:#128C7E;font-size:.82rem;margin-bottom:3px}
@@ -47,18 +66,18 @@ st.markdown("""<style>
 .sm-head{display:flex;gap:10px;align-items:center;margin-bottom:8px;font-weight:700}
 .avatar{width:38px;height:38px;border-radius:50%;background:#7B5CD6;color:#fff;display:flex;align-items:center;justify-content:center}
 .sm-foot{color:#667;font-size:.85rem;margin-top:10px}
-.badge{display:inline-block;background:#12263A;color:#fff;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px}
+.badge{display:inline-block;background:#0B3E73;color:#fff;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px}
 .empty{border:2px dashed #B8C6D4;border-radius:14px;padding:38px 16px;text-align:center;color:#5B6E80}
-.url-box{background:#fff;border:1px dashed #0E7C86;border-radius:10px;padding:10px 14px;font-family:Consolas,monospace;word-break:break-all;color:#12263A}
+.url-box{background:#fff;border:1px dashed #1769AA;border-radius:10px;padding:10px 14px;font-family:Consolas,monospace;word-break:break-all;color:#0B3E73}
 .result{border-radius:14px;padding:18px 22px;border-left:12px solid;margin-top:14px}
 .res-title{font-size:2.1rem;font-weight:800;line-height:1.15}
-.score{font-size:1.1rem;font-weight:700;color:#12263A;margin-top:4px}
+.score{font-size:1.1rem;font-weight:700;color:#0B3E73;margin-top:4px}
 .bar{height:12px;background:rgba(0,0,0,.09);border-radius:8px;margin-top:10px;overflow:hidden}
 .bar div{height:100%}
-.reasons{margin:.2rem 0 .6rem;padding-left:1.2rem;color:#12263A}
-.pts{background:#12263A;color:#fff;border-radius:6px;padding:0 7px;font-size:.78rem;margin-left:6px}
-.rec{background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 16px;font-weight:600;color:#12263A}
-.gate{background:#12263A;color:#fff;border-radius:12px;padding:12px 16px;font-weight:600;margin-top:12px}
+.reasons{margin:.2rem 0 .6rem;padding-left:1.2rem;color:#0B3E73}
+.pts{background:#0B3E73;color:#fff;border-radius:6px;padding:0 7px;font-size:.78rem;margin-left:6px}
+.rec{background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 16px;font-weight:600;color:#0B3E73}
+.gate{background:#0B3E73;color:#fff;border-radius:12px;padding:12px 16px;font-weight:600;margin-top:12px}
 </style>""", unsafe_allow_html=True)
 
 
@@ -122,7 +141,7 @@ def gate_actions(res):
 
 
 # ---------- Page header ----------
-st.markdown('<div class="vx-title">🛡️ Veylix</div>'
+st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
             '<div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>'
             '<div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or '
             'social-media accounts. The messages below are simulated to show how automatic incoming-link detection '
@@ -165,7 +184,7 @@ with tab_sim:
                         unsafe_allow_html=True)
 
     with right:
-        st.markdown('<div class="panel-h">🛡️ Veylix analysis</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="panel-h">{vx_logo(20, "vxLogoPanel")}Veylix analysis</div>', unsafe_allow_html=True)
         if not msg:
             st.markdown('<div class="empty">Veylix is waiting for an incoming link.</div>', unsafe_allow_html=True)
         elif not url:
