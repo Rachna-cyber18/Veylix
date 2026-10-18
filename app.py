@@ -40,6 +40,7 @@ st.markdown("""<style>
   background-attachment:fixed;
   min-height:100vh;
 }
+header[data-testid="stHeader"]{background:transparent !important}
 .block-container{max-width:1150px;padding-top:2rem}
 .vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#0B3E73;line-height:1.4;
   white-space:normal;overflow-wrap:break-word;word-break:break-word;margin:0;padding:.15em 0;
