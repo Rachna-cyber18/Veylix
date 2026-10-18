@@ -36,10 +36,9 @@ def vx_logo(size, grad_id):
 
 st.markdown("""<style>
 .stApp{
-  background-color:#F7F9FC;
-  background-image:radial-gradient(#D7E3F0 1.2px, transparent 1.2px);
-  background-size:18px 18px;
+  background:linear-gradient(180deg, #87CEEB 0%, #B8DFFF 30%, #E0F0FF 60%, #FFFFFF 100%);
   background-attachment:fixed;
+  min-height:100vh;
 }
 .block-container{max-width:1150px;padding-top:2rem}
 .vx-title{font-size:clamp(1.6rem, 6vw, 2.4rem);font-weight:800;color:#0B3E73;line-height:1.4;
