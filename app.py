@@ -223,4 +223,125 @@ st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
 # ---------- Sidebar ----------
 with st.sidebar:
     st.markdown(f"""
-    <div
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        {vx_logo(30, "vxLogoSB")}
+        <span style="font-size:1.15rem;font-weight:800;color:#0B3E73">About Veylix</span>
+    </div>
+    <p style="font-size:.85rem;color:#4A6279;line-height:1.6;margin-bottom:1.4rem">
+        An intelligent URL threat detection system that analyses incoming links
+        from WhatsApp, Gmail, SMS &amp; social media before you click them.
+    </p>
+    <div style="font-weight:700;font-size:.95rem;color:#0B3E73;margin-bottom:.6rem;border-bottom:1px solid #D5DEE8;padding-bottom:6px">
+        Safety Tips
+    </div>
+    <div style="font-size:.83rem;color:#2C4257;line-height:1.9">
+        <div style="margin-bottom:2px">• Never click links with IP addresses instead of domain names</div>
+        <div style="margin-bottom:2px">• Always verify the sender before opening any link</div>
+        <div style="margin-bottom:2px">• Avoid shortened URLs from unknown sources</div>
+        <div style="margin-bottom:2px">• Check for HTTPS before entering personal info</div>
+        <div>• If a deal looks too good to be true — it probably is</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+for key, default in (("msg", None), ("animate", False), ("last_id", None), ("clicked", False),
+                     ("decision", None), ("manual_url", None)):
+    st.session_state.setdefault(key, default)
+
+tab_sim, tab_manual = st.tabs([f"{_svg_icon('WhatsApp')} Simulated incoming link",
+                                f"{_svg_icon('SMS')} Paste & scan a message"])
+
+with tab_sim:
+    c1, c2, c3 = st.columns([1.2, 2, 1.3], vertical_alignment="bottom")
+    source = c1.selectbox("Message source", list(SENDERS),
+                          format_func=lambda s: f"{s}")
+    scenario = c2.selectbox("Scenario", ["Random"] + [m["title"] for m in SAMPLE_MESSAGES])
+    if c3.button("Simulate Incoming Link", type="primary", use_container_width=True):
+        if scenario == "Random":
+            pool = [m for m in SAMPLE_MESSAGES if m["title"] != st.session_state.last_id] or SAMPLE_MESSAGES
+            pick = random.choice(pool)
+        else:
+            pick = next(m for m in SAMPLE_MESSAGES if m["title"] == scenario)
+        st.session_state.msg, st.session_state.last_id, st.session_state.animate = pick, pick["title"], True
+        st.session_state.clicked, st.session_state.decision = False, None
+
+    left, right = st.columns(2, gap="large")
+    msg = st.session_state.msg
+    url = extract_url(msg["text"]) if msg else None
+
+    with left:
+        st.markdown(f'<div class="panel-h">{_svg_icon(source, 20)} Incoming message — {source}</div>', unsafe_allow_html=True)
+        if msg:
+            render_message(source, msg["text"], url)
+            if url:
+                st.markdown('<span class="badge">🔗 Link Detected</span>', unsafe_allow_html=True)
+                st.write("")
+                if st.button("👆 Tap the link in this message", key="tap"):
+                    st.session_state.clicked, st.session_state.decision = True, None
+        else:
+            st.markdown('<div class="empty">No message yet.<br>Click <b>Simulate Incoming Link</b> to start.</div>',
+                        unsafe_allow_html=True)
+
+    with right:
+        st.markdown(f'<div class="panel-h">{vx_logo(20, "vxLogoPanel")}Veylix analysis</div>', unsafe_allow_html=True)
+        if not msg:
+            st.markdown('<div class="empty">Veylix is waiting for an incoming link.</div>', unsafe_allow_html=True)
+        elif not url:
+            st.info("No link was found in this message, so there is nothing to analyse.")
+        else:
+            if st.session_state.animate:
+                with st.status("Veylix is scanning the incoming message...", expanded=True) as status:
+                    st.write("🔍 Automatically detecting URL...")
+                    time.sleep(0.8)
+                    st.write("Extracting the link and sending it to the analyzer...")
+                    time.sleep(0.8)
+                    st.write("Analyzing and calculating the risk score...")
+                    time.sleep(0.8)
+                    status.update(label="Analysis complete", state="complete", expanded=False)
+                st.session_state.animate = False
+            st.markdown('<div style="font-weight:600;margin-bottom:4px">Detected URL</div>'
+                        f'<div class="url-box">{html.escape(url)}</div>', unsafe_allow_html=True)
+            result = evaluate(url)
+            if st.session_state.clicked:
+                st.markdown('<div class="gate">🚧 You tapped this link. Veylix stopped it from opening '
+                            'and checked it first. The link has NOT been opened.</div>', unsafe_allow_html=True)
+            render_result(result)
+            if st.session_state.clicked:
+                gate_actions(result)
+
+with tab_manual:
+    st.markdown('<div class="vx-note">Paste the <b>whole message</b> you received from WhatsApp, Gmail, SMS or social media. '
+                'Veylix will automatically find and analyse any link inside it.</div>',
+                unsafe_allow_html=True)
+    typed = st.text_area("Paste the full message here", placeholder="Hey! You won a free iPhone 🎉 Click here to claim: http://free-prize.example.com/win",
+                          height=120, label_visibility="collapsed")
+    check_clicked = st.button("🔍 Scan Message", type="primary", use_container_width=True)
+
+    if check_clicked:
+        st.session_state.manual_url = typed.strip() if typed and typed.strip() else None
+
+    if st.session_state.manual_url:
+        found = extract_url(st.session_state.manual_url)
+        if found:
+            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
+                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
+                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
+                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
+            st.markdown('<div style="font-weight:600;margin-bottom:4px">🔗 Detected URL</div>'
+                        f'<div class="url-box">{html.escape(found)}</div>', unsafe_allow_html=True)
+            render_result(evaluate(found))
+        else:
+            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
+                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
+                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
+                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
+            st.info("No link was found in this message. Try pasting a message that contains a URL.")
+    else:
+        st.markdown('<div class="empty">Paste a message above and click <b>🔍 Scan Message</b>.</div>',
+                    unsafe_allow_html=True)
+
+# ---------- Footer ----------
+st.markdown("""<hr style="margin-top:3rem;border:none;border-top:1px solid #B8C6D4">
+<div style="text-align:center;padding:12px 0 20px;color:#4A6279;font-size:.85rem;line-height:1.8">
+  © 2025 Veylix — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
+  <b>Maitreyi</b> (2025A7R033) &nbsp;•&nbsp; <b>Rachna Sharma</b> (2025A7R047)
+</div>""", unsafe_allow_html=True)
