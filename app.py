@@ -10,15 +10,38 @@ from rules import SAMPLE_MESSAGES
 from url_analyzer import extract_url
 
 st.set_page_config(page_title="Veylix", page_icon="🛡️", layout="wide")
-# Note: the browser-tab icon above stays an emoji (Streamlit needs an emoji, a local image
-# file, or a URL for page_icon — it can't take inline SVG). The main on-page logo below uses
-# the custom "sunset shield + check" design instead.
 
 SENDERS = {"WhatsApp": "+00 00000 00000 (unknown number)",
            "Gmail": "support@notice-center.example",
            "SMS": "AX-ALERTS",
            "Social Media": "giveaway_official"}
-ICONS = {"WhatsApp": "📱", "Gmail": "✉️", "SMS": "💬", "Social Media": "🌐"}
+
+# Custom SVG icons for each platform (inline, no emoji)
+def _svg_icon(name, size=18):
+    icons = {
+        "WhatsApp": (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" style="vertical-align:-3px">'
+                     f'<circle cx="12" cy="12" r="11" fill="#25D366"/>'
+                     f'<path d="M7.5 17.5l1-3.5a5.5 5.5 0 1 1 2.2 2.1L7.5 17.5z" fill="none" stroke="#fff" stroke-width="1.2"/>'
+                     f'<path d="M9.5 9.5c.2-.4.5-.5.7-.5s.4.1.5.2l.6.9c.1.2.1.4-.1.6l-.3.3c0 0 .3.8 1 1.5s1.3.9 1.3.9l.3-.3c.2-.2.4-.2.6-.1l.9.5c.2.1.3.3.2.6-.1.3-.5.8-1 .8-1.5 0-3.5-1.8-4.2-3-.4-.7-.6-1.2-.5-1.4z" fill="#fff"/>'
+                     f'</svg>'),
+        "Gmail": (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" style="vertical-align:-3px">'
+                  f'<rect x="2" y="5" width="20" height="14" rx="2" fill="#fff" stroke="#EA4335" stroke-width="1"/>'
+                  f'<path d="M2 6l10 7 10-7" fill="none" stroke="#EA4335" stroke-width="1.5" stroke-linecap="round"/>'
+                  f'</svg>'),
+        "SMS": (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" style="vertical-align:-3px">'
+                f'<rect x="5" y="2" width="14" height="20" rx="2.5" fill="none" stroke="#3478F6" stroke-width="1.5"/>'
+                f'<line x1="9" y1="19" x2="15" y2="19" stroke="#3478F6" stroke-width="1.2" stroke-linecap="round"/>'
+                f'<circle cx="12" cy="10" r="1" fill="#3478F6"/><circle cx="8.5" cy="10" r="1" fill="#3478F6"/>'
+                f'<circle cx="15.5" cy="10" r="1" fill="#3478F6"/>'
+                f'</svg>'),
+        "Social Media": (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" style="vertical-align:-3px">'
+                         f'<circle cx="12" cy="12" r="11" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>'
+                         f'<circle cx="12" cy="12" r="5" fill="none" stroke="#8B5CF6" stroke-width="1.3"/>'
+                         f'<circle cx="17.5" cy="6.5" r="1.2" fill="#8B5CF6"/>'
+                         f'</svg>'),
+    }
+    return icons.get(name, "")
+
 COLORS = {"GREEN": ("#1E8E52", "#E4F5EB"), "YELLOW": ("#A97600", "#FFF3CF"),
           "RED": ("#D0303B", "#FDE7E9")}
 
@@ -52,22 +75,50 @@ header[data-testid="stHeader"]{background:transparent !important}
 .vx-note{background:#fff;border:1px solid #D5DEE8;border-left:5px solid #1769AA;border-radius:8px;padding:10px 14px;color:#2C4257;font-size:.9rem;margin-bottom:1rem}
 .panel-h{font-weight:700;font-size:1.05rem;color:#0B3E73;margin:.2rem 0 .6rem}
 .hl{color:#1769AA;text-decoration:underline;font-weight:600;word-break:break-all}
-.wa-bg{background:#E5DDD5;border-radius:14px;padding:18px}
-.wa-bubble{background:#DCF8C6;color:#1c1c1c;border-radius:10px 10px 10px 2px;padding:10px 12px;line-height:1.45;max-width:92%}
-.wa-who{font-weight:700;color:#128C7E;font-size:.82rem;margin-bottom:3px}
-.wa-ts{text-align:right;font-size:.7rem;color:#667;margin-top:4px}
-.gm{background:#fff;border:1px solid #D5DEE8;border-radius:12px;overflow:hidden;color:#1c1c1c}
-.gm-top{background:#F6F8FC;border-bottom:1px solid #E3E8EF;padding:9px 14px;font-size:.85rem;color:#3C4858}
-.gm-body{padding:14px;line-height:1.5}
-.gm-subj{font-weight:700;font-size:1.05rem}
-.gm-from{color:#5F6B7A;font-size:.8rem;margin-bottom:10px}
-.sms-bg{background:#fff;border:1px solid #D5DEE8;border-radius:14px;padding:16px;color:#111}
-.sms-who{text-align:center;color:#667;font-size:.8rem;margin-bottom:10px}
-.sms-bubble{background:#E9E9EB;border-radius:18px 18px 18px 4px;padding:10px 14px;display:inline-block;max-width:92%;line-height:1.45}
-.sm{background:#fff;border:1px solid #D5DEE8;border-radius:12px;padding:14px;color:#1c1c1c;line-height:1.5}
-.sm-head{display:flex;gap:10px;align-items:center;margin-bottom:8px;font-weight:700}
-.avatar{width:38px;height:38px;border-radius:50%;background:#7B5CD6;color:#fff;display:flex;align-items:center;justify-content:center}
-.sm-foot{color:#667;font-size:.85rem;margin-top:10px}
+
+/* WhatsApp card */
+.wa-card{border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08)}
+.wa-header{background:#075E54;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.wa-avatar{width:34px;height:34px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center}
+.wa-avatar svg{width:18px;height:18px}
+.wa-hname{color:#fff;font-size:.85rem;font-weight:600}
+.wa-hsub{color:#a8d5cf;font-size:.72rem}
+.wa-body{background:#E5DDD5;padding:14px}
+.wa-bubble{background:#DCF8C6;color:#1c1c1c;border-radius:0 10px 10px 10px;padding:10px 12px;line-height:1.5;max-width:92%;box-shadow:0 1px 2px rgba(0,0,0,.08);position:relative}
+.wa-ts{text-align:right;font-size:.68rem;color:#667;margin-top:3px}
+
+/* Gmail card */
+.gm-card{border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08);background:#fff}
+.gm-header{background:#F2F6FC;padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E8ECF1}
+.gm-logo{width:28px;height:28px;border-radius:50%;background:#EA4335;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:.75rem}
+.gm-htxt{font-size:.82rem;color:#5F6B7A;font-weight:600}
+.gm-body{padding:14px}
+.gm-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.gm-sender-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#EA4335,#FBBC05);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem;flex-shrink:0}
+.gm-subj{font-weight:700;font-size:.95rem;color:#1a1a1a}
+.gm-from{color:#5F6B7A;font-size:.78rem}
+.gm-text{color:#3C4858;line-height:1.55;font-size:.9rem;border-top:1px solid #F0F0F0;padding-top:10px}
+
+/* SMS card */
+.sms-card{border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08);background:#fff}
+.sms-header{background:#F8F8F8;padding:8px 14px;text-align:center;border-bottom:1px solid #E8E8E8}
+.sms-hname{font-weight:700;color:#1c1c1c;font-size:.85rem}
+.sms-hsub{color:#8E8E93;font-size:.72rem}
+.sms-body{background:#fff;padding:14px}
+.sms-bubble{background:#E9E9EB;color:#1c1c1c;border-radius:18px 18px 18px 4px;padding:10px 14px;display:inline-block;max-width:92%;line-height:1.5;font-size:.9rem}
+
+/* Social Media card */
+.sm-card{border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08);background:#fff}
+.sm-header{background:linear-gradient(135deg,#833AB4,#C13584,#E1306C);padding:8px 14px;display:flex;align-items:center;gap:8px}
+.sm-hname{color:#fff;font-size:.82rem;font-weight:600}
+.sm-body{padding:14px}
+.sm-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sm-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#833AB4,#E1306C);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem;flex-shrink:0}
+.sm-user{font-weight:700;font-size:.88rem;color:#262626}
+.sm-sub{font-size:.75rem;color:#8E8E93}
+.sm-text{color:#262626;line-height:1.5;font-size:.9rem}
+.sm-actions{display:flex;gap:16px;margin-top:10px;padding-top:8px;border-top:1px solid #EFEFEF;color:#262626;font-size:.8rem}
+
 .badge{display:inline-block;background:#0B3E73;color:#fff;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px}
 .empty{border:2px dashed #B8C6D4;border-radius:14px;padding:38px 16px;text-align:center;color:#5B6E80}
 .url-box{background:#fff;border:1px dashed #1769AA;border-radius:10px;padding:10px 14px;font-family:Consolas,monospace;word-break:break-all;color:#0B3E73}
@@ -89,20 +140,40 @@ def render_message(source, text, url):
         safe = safe.replace(html.escape(url), f'<span class="hl">{html.escape(url)}</span>')
     safe = safe.replace("\n", "<br>")
     who = html.escape(SENDERS[source])
+
     if source == "WhatsApp":
-        card = (f'<div class="wa-bg"><div class="wa-bubble"><div class="wa-who">{who}</div>'
-                f'{safe}<div class="wa-ts">10:42</div></div></div>')
+        card = (f'<div class="wa-card">'
+                f'<div class="wa-header">'
+                f'<div class="wa-avatar"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z" fill="#fff"/></svg></div>'
+                f'<div><div class="wa-hname">{who}</div><div class="wa-hsub">tap for contact info</div></div>'
+                f'</div>'
+                f'<div class="wa-body"><div class="wa-bubble">{safe}<div class="wa-ts">10:42 AM ✓✓</div></div></div>'
+                f'</div>')
     elif source == "Gmail":
-        card = (f'<div class="gm"><div class="gm-top">Inbox - 1 new message</div><div class="gm-body">'
-                f'<div class="gm-subj">Action needed on your request</div>'
-                f'<div class="gm-from">From: {who}</div>{safe}</div></div>')
+        initial = who[0].upper() if who else "?"
+        card = (f'<div class="gm-card">'
+                f'<div class="gm-header"><div class="gm-logo">M</div><div class="gm-htxt">Inbox</div></div>'
+                f'<div class="gm-body">'
+                f'<div class="gm-row"><div class="gm-sender-av">{initial}</div>'
+                f'<div><div class="gm-subj">Action needed on your request</div>'
+                f'<div class="gm-from">{who}</div></div></div>'
+                f'<div class="gm-text">{safe}</div>'
+                f'</div></div>')
     elif source == "SMS":
-        card = (f'<div class="sms-bg"><div class="sms-who">{who}<br>Text message</div>'
-                f'<div class="sms-bubble">{safe}</div></div>')
+        card = (f'<div class="sms-card">'
+                f'<div class="sms-header"><div class="sms-hname">{who}</div><div class="sms-hsub">Text Message</div></div>'
+                f'<div class="sms-body"><div class="sms-bubble">{safe}</div></div>'
+                f'</div>')
     else:
-        card = (f'<div class="sm"><div class="sm-head"><div class="avatar">{who[0].upper()}</div>'
-                f'<div>@{who}<div style="font-weight:400;font-size:.8rem;color:#667">Direct message</div></div></div>'
-                f'{safe}<div class="sm-foot">♡ Like &nbsp; 💬 Reply &nbsp; ↗ Share</div></div>')
+        initial = who[0].upper() if who else "?"
+        card = (f'<div class="sm-card">'
+                f'<div class="sm-header"><div class="sm-hname">Direct Message</div></div>'
+                f'<div class="sm-body">'
+                f'<div class="sm-row"><div class="sm-avatar">{initial}</div>'
+                f'<div><div class="sm-user">@{who}</div><div class="sm-sub">sent you a message</div></div></div>'
+                f'<div class="sm-text">{safe}</div>'
+                f'<div class="sm-actions"><span>♡ Like</span><span>↩ Reply</span><span>↗ Share</span></div>'
+                f'</div></div>')
     st.markdown(card, unsafe_allow_html=True)
 
 
@@ -152,123 +223,4 @@ st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
 # ---------- Sidebar ----------
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-        {vx_logo(30, "vxLogoSB")}
-        <span style="font-size:1.15rem;font-weight:800;color:#0B3E73">About Veylix</span>
-    </div>
-    <p style="font-size:.85rem;color:#4A6279;line-height:1.6;margin-bottom:1.4rem">
-        An intelligent URL threat detection system that analyses incoming links
-        from WhatsApp, Gmail, SMS &amp; social media before you click them.
-    </p>
-    <div style="font-weight:700;font-size:.95rem;color:#0B3E73;margin-bottom:.6rem;border-bottom:1px solid #D5DEE8;padding-bottom:6px">
-        Safety Tips
-    </div>
-    <div style="font-size:.83rem;color:#2C4257;line-height:1.9">
-        <div style="margin-bottom:2px">• Never click links with IP addresses instead of domain names</div>
-        <div style="margin-bottom:2px">• Always verify the sender before opening any link</div>
-        <div style="margin-bottom:2px">• Avoid shortened URLs from unknown sources</div>
-        <div style="margin-bottom:2px">• Check for HTTPS before entering personal info</div>
-        <div>• If a deal looks too good to be true — it probably is</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-for key, default in (("msg", None), ("animate", False), ("last_id", None), ("clicked", False),
-                     ("decision", None), ("manual_url", None)):
-    st.session_state.setdefault(key, default)
-
-tab_sim, tab_manual = st.tabs(["🔔 Simulated incoming link", "📩 Paste & scan a message"])
-
-with tab_sim:
-    c1, c2, c3 = st.columns([1.2, 2, 1.3], vertical_alignment="bottom")
-    source = c1.selectbox("Message source", list(SENDERS), format_func=lambda s: f"{ICONS[s]} {s}")
-    scenario = c2.selectbox("Scenario", ["Random"] + [m["title"] for m in SAMPLE_MESSAGES])
-    if c3.button("Simulate Incoming Link", type="primary", use_container_width=True):
-        if scenario == "Random":
-            pool = [m for m in SAMPLE_MESSAGES if m["title"] != st.session_state.last_id] or SAMPLE_MESSAGES
-            pick = random.choice(pool)
-        else:
-            pick = next(m for m in SAMPLE_MESSAGES if m["title"] == scenario)
-        st.session_state.msg, st.session_state.last_id, st.session_state.animate = pick, pick["title"], True
-        st.session_state.clicked, st.session_state.decision = False, None
-
-    left, right = st.columns(2, gap="large")
-    msg = st.session_state.msg
-    url = extract_url(msg["text"]) if msg else None
-
-    with left:
-        st.markdown(f'<div class="panel-h">{ICONS[source]} Incoming message ({source})</div>', unsafe_allow_html=True)
-        if msg:
-            render_message(source, msg["text"], url)
-            if url:
-                st.markdown('<span class="badge">🔔 New Link Detected</span>', unsafe_allow_html=True)
-                st.write("")
-                if st.button("👆 Tap the link in this message", key="tap"):
-                    st.session_state.clicked, st.session_state.decision = True, None
-        else:
-            st.markdown('<div class="empty">No message yet.<br>Click <b>Simulate Incoming Link</b> to start.</div>',
-                        unsafe_allow_html=True)
-
-    with right:
-        st.markdown(f'<div class="panel-h">{vx_logo(20, "vxLogoPanel")}Veylix analysis</div>', unsafe_allow_html=True)
-        if not msg:
-            st.markdown('<div class="empty">Veylix is waiting for an incoming link.</div>', unsafe_allow_html=True)
-        elif not url:
-            st.info("No link was found in this message, so there is nothing to analyse.")
-        else:
-            if st.session_state.animate:  # short pauses so the steps are visible in a demo
-                with st.status("Veylix is scanning the incoming message...", expanded=True) as status:
-                    st.write("🔍 Automatically detecting URL...")
-                    time.sleep(0.8)
-                    st.write("Extracting the link and sending it to the analyzer...")
-                    time.sleep(0.8)
-                    st.write("Analyzing and calculating the risk score...")
-                    time.sleep(0.8)
-                    status.update(label="Analysis complete", state="complete", expanded=False)
-                st.session_state.animate = False
-            st.markdown('<div style="font-weight:600;margin-bottom:4px">Detected URL</div>'
-                        f'<div class="url-box">{html.escape(url)}</div>', unsafe_allow_html=True)
-            result = evaluate(url)
-            if st.session_state.clicked:
-                st.markdown('<div class="gate">🚧 You tapped this link. Veylix stopped it from opening '
-                            'and checked it first. The link has NOT been opened.</div>', unsafe_allow_html=True)
-            render_result(result)
-            if st.session_state.clicked:
-                gate_actions(result)
-
-with tab_manual:
-    st.markdown('<div class="vx-note">Paste the <b>whole message</b> you received from WhatsApp, Gmail, SMS or social media. '
-                'Veylix will automatically find and analyse any link inside it.</div>',
-                unsafe_allow_html=True)
-    typed = st.text_area("Paste the full message here", placeholder="Hey! You won a free iPhone 🎉 Click here to claim: http://free-prize.example.com/win",
-                          height=120, label_visibility="collapsed")
-    check_clicked = st.button("🔍 Scan Message", type="primary", use_container_width=True)
-
-    if check_clicked:
-        st.session_state.manual_url = typed.strip() if typed and typed.strip() else None
-
-    if st.session_state.manual_url:
-        found = extract_url(st.session_state.manual_url)
-        if found:
-            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
-                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
-                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
-                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
-            st.markdown('<div style="font-weight:600;margin-bottom:4px">🔗 Detected URL</div>'
-                        f'<div class="url-box">{html.escape(found)}</div>', unsafe_allow_html=True)
-            render_result(evaluate(found))
-        else:
-            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
-                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
-                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
-                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
-            st.info("No link was found in this message. Try pasting a message that contains a URL.")
-    else:
-        st.markdown('<div class="empty">Paste a message above and click <b>🔍 Scan Message</b>.</div>',
-                    unsafe_allow_html=True)
-
-# ---------- Footer ----------
-st.markdown("""<hr style="margin-top:3rem;border:none;border-top:1px solid #B8C6D4">
-<div style="text-align:center;padding:12px 0 20px;color:#4A6279;font-size:.85rem;line-height:1.8">
-  © 2025 Veylix — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
-  <b>Maitreyi</b> (2025A7R033) &nbsp;•&nbsp; <b>Rachna Sharma</b> (2025A7R047)
-</div>""", unsafe_allow_html=True)
+    <div
