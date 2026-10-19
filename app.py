@@ -182,7 +182,7 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
                      ("decision", None), ("manual_url", None)):
     st.session_state.setdefault(key, default)
 
-tab_sim, tab_manual = st.tabs(["🔔 Simulated incoming link", "🔗 Check your own link"])
+tab_sim, tab_manual = st.tabs(["🔔 Simulated incoming link", "📩 Paste & scan a message"])
 
 with tab_sim:
     c1, c2, c3 = st.columns([1.2, 2, 1.3], vertical_alignment="bottom")
@@ -242,24 +242,34 @@ with tab_sim:
                 gate_actions(result)
 
 with tab_manual:
-    st.markdown('<div class="vx-note">Paste any link below to see how Veylix would score it. '
-                'This link is only read as text — Veylix never opens or visits it.</div>',
+    st.markdown('<div class="vx-note">Paste the <b>whole message</b> you received from WhatsApp, Gmail, SMS or social media. '
+                'Veylix will automatically find and analyse any link inside it.</div>',
                 unsafe_allow_html=True)
-    mc1, mc2 = st.columns([4, 1], vertical_alignment="bottom")
-    typed = mc1.text_input("Paste a link to check", placeholder="https://example.com/login",
-                            label_visibility="collapsed")
-    check_clicked = mc2.button("Check link", type="primary", use_container_width=True)
+    typed = st.text_area("Paste the full message here", placeholder="Hey! You won a free iPhone 🎉 Click here to claim: http://free-prize.example.com/win",
+                          height=120, label_visibility="collapsed")
+    check_clicked = st.button("🔍 Scan Message", type="primary", use_container_width=True)
 
     if check_clicked:
         st.session_state.manual_url = typed.strip() if typed and typed.strip() else None
 
     if st.session_state.manual_url:
-        found = extract_url(st.session_state.manual_url) or st.session_state.manual_url
-        st.markdown('<div style="font-weight:600;margin:1rem 0 4px">Checking</div>'
-                    f'<div class="url-box">{html.escape(found)}</div>', unsafe_allow_html=True)
-        render_result(evaluate(found))
+        found = extract_url(st.session_state.manual_url)
+        if found:
+            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
+                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
+                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
+                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
+            st.markdown('<div style="font-weight:600;margin-bottom:4px">🔗 Detected URL</div>'
+                        f'<div class="url-box">{html.escape(found)}</div>', unsafe_allow_html=True)
+            render_result(evaluate(found))
+        else:
+            st.markdown(f'<div style="font-weight:600;margin:1rem 0 4px">📩 Your message</div>'
+                        f'<div style="background:#fff;border:1px solid #D5DEE8;border-radius:10px;padding:12px 14px;'
+                        f'color:#2C4257;line-height:1.5;margin-bottom:.8rem;white-space:pre-wrap">'
+                        f'{html.escape(st.session_state.manual_url)}</div>', unsafe_allow_html=True)
+            st.info("No link was found in this message. Try pasting a message that contains a URL.")
     else:
-        st.markdown('<div class="empty">Paste a link above and click <b>Check link</b>.</div>',
+        st.markdown('<div class="empty">Paste a message above and click <b>🔍 Scan Message</b>.</div>',
                     unsafe_allow_html=True)
 
 # ---------- Footer ----------
