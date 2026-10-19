@@ -232,3 +232,10 @@ with tab_manual:
     else:
         st.markdown('<div class="empty">Paste a link above and click <b>Check link</b>.</div>',
                     unsafe_allow_html=True)
+
+# ---------- Footer ----------
+st.markdown("""<hr style="margin-top:3rem;border:none;border-top:1px solid #B8C6D4">
+<div style="text-align:center;padding:12px 0 20px;color:#4A6279;font-size:.85rem;line-height:1.8">
+  © 2025 Veylix — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
+  <b>Maitreyi</b> (2025A7R033) &nbsp;•&nbsp; <b>Rachna Sharma</b> (2025A7R047)
+</div>""", unsafe_allow_html=True)
