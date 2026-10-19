@@ -247,8 +247,8 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
                      ("decision", None), ("manual_url", None)):
     st.session_state.setdefault(key, default)
 
-tab_sim, tab_manual = st.tabs([f"{_svg_icon('WhatsApp')} Simulated incoming link",
-                                f"{_svg_icon('SMS')} Paste & scan a message"])
+tab_sim, tab_manual = st.tabs(["📨 Simulated incoming link",
+                                "📋 Paste & scan a message"])
 
 with tab_sim:
     c1, c2, c3 = st.columns([1.2, 2, 1.3], vertical_alignment="bottom")
