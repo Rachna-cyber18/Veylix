@@ -152,29 +152,23 @@ st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
 # ---------- Sidebar ----------
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        {vx_logo(32, "vxLogoSB")}
-        <span style="font-size:1.25rem;font-weight:800;color:#0B3E73">About Veylix</span>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        {vx_logo(30, "vxLogoSB")}
+        <span style="font-size:1.15rem;font-weight:800;color:#0B3E73">About Veylix</span>
     </div>
-    <p style="font-size:.88rem;color:#2C4257;line-height:1.6;margin-bottom:1.2rem">
-        Veylix is an intelligent URL threat detection system that analyses incoming links
-        from WhatsApp, Gmail, SMS &amp; social media <b>before you click them</b>.
+    <p style="font-size:.85rem;color:#4A6279;line-height:1.6;margin-bottom:1.4rem">
+        An intelligent URL threat detection system that analyses incoming links
+        from WhatsApp, Gmail, SMS &amp; social media before you click them.
     </p>
-    <div style="font-weight:800;font-size:1rem;color:#0B3E73;margin-bottom:.5rem">💡 Safety Tips</div>
-    <div style="background:#FFF3CF;border-radius:10px;padding:10px 12px;font-size:.85rem;color:#6B5900;margin-bottom:.5rem">
-        ⚠️ Never click links with IP addresses instead of domain names
+    <div style="font-weight:700;font-size:.95rem;color:#0B3E73;margin-bottom:.6rem;border-bottom:1px solid #D5DEE8;padding-bottom:6px">
+        Safety Tips
     </div>
-    <div style="background:#E4F5EB;border-radius:10px;padding:10px 12px;font-size:.85rem;color:#1A6B3C;margin-bottom:.5rem">
-        ✅ Always verify the sender before opening any link
-    </div>
-    <div style="background:#FDE7E9;border-radius:10px;padding:10px 12px;font-size:.85rem;color:#B02A33;margin-bottom:.5rem">
-        🚫 Avoid shortened URLs from unknown sources
-    </div>
-    <div style="background:#E8F0FE;border-radius:10px;padding:10px 12px;font-size:.85rem;color:#1A3D6B;margin-bottom:.5rem">
-        🔒 Check for HTTPS before entering any personal info
-    </div>
-    <div style="background:#F3E8FF;border-radius:10px;padding:10px 12px;font-size:.85rem;color:#5B2C8B">
-        🧠 If a deal looks too good to be true — it probably is
+    <div style="font-size:.83rem;color:#2C4257;line-height:1.9">
+        <div style="margin-bottom:2px">• Never click links with IP addresses instead of domain names</div>
+        <div style="margin-bottom:2px">• Always verify the sender before opening any link</div>
+        <div style="margin-bottom:2px">• Avoid shortened URLs from unknown sources</div>
+        <div style="margin-bottom:2px">• Check for HTTPS before entering personal info</div>
+        <div>• If a deal looks too good to be true — it probably is</div>
     </div>
     """, unsafe_allow_html=True)
 
