@@ -112,6 +112,116 @@ def vx_logo(size, grad_id):
             f'stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
+# ── Custom Gradient SVG Icons (unique to Veylix) ──
+
+def nav_icon_scan(s=22):
+    """Hexagonal radar scanner icon — dark blue to electric cyan gradient."""
+    return (f'<svg width="{s}" height="{s}" viewBox="0 0 32 32" style="flex-shrink:0">'
+            f'<defs><linearGradient id="niScan" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0%" stop-color="#0B3E73"/><stop offset="100%" stop-color="#38BDF8"/>'
+            f'</linearGradient></defs>'
+            f'<polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="url(#niScan)" stroke-width="2"/>'
+            f'<polygon points="16,8 23,12 23,20 16,24 9,20 9,12" fill="none" stroke="url(#niScan)" stroke-width="1.3" opacity=".5"/>'
+            f'<circle cx="16" cy="16" r="2.5" fill="url(#niScan)"/>'
+            f'<line x1="16" y1="16" x2="24" y2="10" stroke="url(#niScan)" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>'
+            f'</svg>')
+
+
+def nav_icon_stats(s=22):
+    """Crystal prism with faceted light — teal to emerald gradient."""
+    return (f'<svg width="{s}" height="{s}" viewBox="0 0 32 32" style="flex-shrink:0">'
+            f'<defs><linearGradient id="niStats" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#0EA5E9"/>'
+            f'</linearGradient></defs>'
+            f'<path d="M16 3 L27 10 L27 22 L22 28 L10 28 L5 22 L5 10 Z" fill="none" stroke="url(#niStats)" stroke-width="2"/>'
+            f'<line x1="16" y1="3" x2="16" y2="28" stroke="url(#niStats)" stroke-width="1" opacity=".3"/>'
+            f'<line x1="5" y1="10" x2="27" y2="22" stroke="url(#niStats)" stroke-width="1" opacity=".3"/>'
+            f'<line x1="27" y1="10" x2="5" y2="22" stroke="url(#niStats)" stroke-width="1" opacity=".3"/>'
+            f'<circle cx="16" cy="15" r="3" fill="url(#niStats)" opacity=".25"/>'
+            f'<circle cx="16" cy="15" r="1.5" fill="url(#niStats)"/>'
+            f'</svg>')
+
+
+def nav_icon_tips(s=22):
+    """Shield-key hybrid — amber to rose gradient."""
+    return (f'<svg width="{s}" height="{s}" viewBox="0 0 32 32" style="flex-shrink:0">'
+            f'<defs><linearGradient id="niTips" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#EC4899"/>'
+            f'</linearGradient></defs>'
+            f'<path d="M16 3 L26 8 V16 C26 23 21 27 16 29 C11 27 6 23 6 16 V8 Z" fill="none" stroke="url(#niTips)" stroke-width="2"/>'
+            f'<circle cx="16" cy="14" r="4" fill="none" stroke="url(#niTips)" stroke-width="1.8"/>'
+            f'<line x1="16" y1="18" x2="16" y2="24" stroke="url(#niTips)" stroke-width="2" stroke-linecap="round"/>'
+            f'<line x1="14" y1="22" x2="18" y2="22" stroke="url(#niTips)" stroke-width="1.8" stroke-linecap="round"/>'
+            f'</svg>')
+
+
+def nav_icon_about(s=22):
+    """Abstract star-compass rose — Veylix sunset gradient."""
+    return (f'<svg width="{s}" height="{s}" viewBox="0 0 32 32" style="flex-shrink:0">'
+            f'<defs><linearGradient id="niAbout" x1="0" y1="0" x2="1" y2="1">'
+            f'<stop offset="0%" stop-color="#FFB8C6"/><stop offset="50%" stop-color="#C6B6F0"/>'
+            f'<stop offset="100%" stop-color="#93C5FD"/></linearGradient></defs>'
+            f'<path d="M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z" '
+            f'fill="none" stroke="url(#niAbout)" stroke-width="1.8" stroke-linejoin="round"/>'
+            f'<circle cx="16" cy="16" r="4" fill="url(#niAbout)" opacity=".2"/>'
+            f'<circle cx="16" cy="16" r="2" fill="url(#niAbout)"/>'
+            f'</svg>')
+
+
+def page_icon_scan():
+    """Gradient square with white hexagonal radar for Scan URL page header."""
+    return ('<div style="width:42px;height:42px;border-radius:13px;flex-shrink:0;'
+            'background:linear-gradient(135deg,#0B3E73,#1769AA);'
+            'display:flex;align-items:center;justify-content:center;'
+            'box-shadow:0 4px 14px rgba(11,62,115,.3)">'
+            '<svg width="22" height="22" viewBox="0 0 32 32">'
+            '<polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#fff" stroke-width="2"/>'
+            '<polygon points="16,8 23,12 23,20 16,24 9,20 9,12" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>'
+            '<circle cx="16" cy="16" r="2.5" fill="#fff"/>'
+            '<line x1="16" y1="16" x2="24" y2="10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>'
+            '</svg></div>')
+
+def page_icon_stats():
+    """Gradient square with white crystal prism for Statistics page header."""
+    return ('<div style="width:42px;height:42px;border-radius:13px;flex-shrink:0;'
+            'background:linear-gradient(135deg,#10B981,#059669);'
+            'display:flex;align-items:center;justify-content:center;'
+            'box-shadow:0 4px 14px rgba(16,185,129,.3)">'
+            '<svg width="22" height="22" viewBox="0 0 32 32">'
+            '<path d="M16 3 L27 10 L27 22 L22 28 L10 28 L5 22 L5 10 Z" fill="none" stroke="#fff" stroke-width="2"/>'
+            '<line x1="16" y1="3" x2="16" y2="28" stroke="#fff" stroke-width="1" opacity=".3"/>'
+            '<line x1="5" y1="10" x2="27" y2="22" stroke="#fff" stroke-width="1" opacity=".3"/>'
+            '<line x1="27" y1="10" x2="5" y2="22" stroke="#fff" stroke-width="1" opacity=".3"/>'
+            '<circle cx="16" cy="15" r="1.5" fill="#fff"/>'
+            '</svg></div>')
+
+def page_icon_tips():
+    """Gradient square with white shield-key for Safety Tips page header."""
+    return ('<div style="width:42px;height:42px;border-radius:13px;flex-shrink:0;'
+            'background:linear-gradient(135deg,#F59E0B,#E8553A);'
+            'display:flex;align-items:center;justify-content:center;'
+            'box-shadow:0 4px 14px rgba(245,158,11,.3)">'
+            '<svg width="22" height="22" viewBox="0 0 32 32">'
+            '<path d="M16 3 L26 8 V16 C26 23 21 27 16 29 C11 27 6 23 6 16 V8 Z" fill="none" stroke="#fff" stroke-width="2"/>'
+            '<circle cx="16" cy="14" r="4" fill="none" stroke="#fff" stroke-width="1.8"/>'
+            '<line x1="16" y1="18" x2="16" y2="24" stroke="#fff" stroke-width="2" stroke-linecap="round"/>'
+            '<line x1="14" y1="22" x2="18" y2="22" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>'
+            '</svg></div>')
+
+def page_icon_about():
+    """Gradient square with dark star-compass for About page header."""
+    return ('<div style="width:42px;height:42px;border-radius:13px;flex-shrink:0;'
+            'background:linear-gradient(135deg,#FFB8C6,#C6B6F0);'
+            'display:flex;align-items:center;justify-content:center;'
+            'box-shadow:0 4px 14px rgba(198,182,240,.3)">'
+            '<svg width="22" height="22" viewBox="0 0 32 32">'
+            '<path d="M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z" '
+            'fill="none" stroke="#4A3A50" stroke-width="1.8" stroke-linejoin="round"/>'
+            '<circle cx="16" cy="16" r="4" fill="#4A3A50" opacity=".15"/>'
+            '<circle cx="16" cy="16" r="2" fill="#4A3A50"/>'
+            '</svg></div>')
+
+
 def ring_chart(value_text, color, dash_offset, label, sublabel):
     """SVG ring chart for sidebar stats."""
     return (f'<div style="display:flex;gap:12px;margin-bottom:10px;align-items:center">'
@@ -571,7 +681,7 @@ with st.sidebar:
     # ── Navigation Menu ──
     page = st.radio(
         "Navigation",
-        ["⚡ Scan URL", "📊 Statistics", "💡 Safety Tips", "ℹ️ About Veylix"],
+        ["Scan URL", "Statistics", "Safety Tips", "About Veylix"],
         label_visibility="visible",
     )
 
@@ -608,14 +718,15 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════
 # PAGE: SCAN URL
 # ══════════════════════════════════════════════════════
-if page == "⚡ Scan URL":
-    st.markdown('<div class="page-header"><span class="page-header-icon">⚡</span>'
-                '<div><div class="page-header-title">Scan URL</div>'
-                '<div class="page-header-desc">Analyze links from messages for threats</div></div></div>',
+if page == "Scan URL":
+    st.markdown(f'<div class="page-header">'
+                f'{page_icon_scan()}'
+                f'<div><div class="page-header-title">Scan URL</div>'
+                f'<div class="page-header-desc">Analyze links from messages for threats</div></div></div>',
                 unsafe_allow_html=True)
 
-    tab_sim, tab_manual = st.tabs(["📱 Simulated incoming link",
-                                    "📋 Paste & scan a message"])
+    tab_sim, tab_manual = st.tabs(["Simulated incoming link",
+                                    "Paste & scan a message"])
 
     with tab_sim:
         c1, c2, c3 = st.columns([1.2, 2, 1.3], vertical_alignment="bottom")
@@ -752,10 +863,11 @@ if page == "⚡ Scan URL":
 # ══════════════════════════════════════════════════════
 # PAGE: STATISTICS
 # ══════════════════════════════════════════════════════
-elif page == "📊 Statistics":
-    st.markdown('<div class="page-header"><span class="page-header-icon">📊</span>'
-                '<div><div class="page-header-title">Session Statistics</div>'
-                '<div class="page-header-desc">Live counters from your current scanning session</div></div></div>',
+elif page == "Statistics":
+    st.markdown(f'<div class="page-header">'
+                f'{page_icon_stats()}'
+                f'<div><div class="page-header-title">Session Statistics</div>'
+                f'<div class="page-header-desc">Live counters from your current scanning session</div></div></div>',
                 unsafe_allow_html=True)
 
     sc = st.session_state.scan_count
@@ -792,7 +904,7 @@ elif page == "📊 Statistics":
 
     if sc == 0:
         st.markdown('<div class="empty" style="margin-top:2rem">No scans yet in this session.<br>'
-                    'Go to <b>⚡ Scan URL</b> to start scanning links and see live stats here!</div>',
+                    'Go to <b>Scan URL</b> to start scanning links and see live stats here!</div>',
                     unsafe_allow_html=True)
     else:
         st.markdown(f"""
@@ -813,10 +925,11 @@ elif page == "📊 Statistics":
 # ══════════════════════════════════════════════════════
 # PAGE: SAFETY TIPS
 # ══════════════════════════════════════════════════════
-elif page == "💡 Safety Tips":
-    st.markdown('<div class="page-header"><span class="page-header-icon">💡</span>'
-                '<div><div class="page-header-title">Cybersecurity Tips</div>'
-                '<div class="page-header-desc">Learn how to protect yourself from online threats</div></div></div>',
+elif page == "Safety Tips":
+    st.markdown(f'<div class="page-header">'
+                f'{page_icon_tips()}'
+                f'<div><div class="page-header-title">Cybersecurity Tips</div>'
+                f'<div class="page-header-desc">Learn how to protect yourself from online threats</div></div></div>',
                 unsafe_allow_html=True)
 
     # Display tips in rows of 3
@@ -851,10 +964,11 @@ elif page == "💡 Safety Tips":
 # ══════════════════════════════════════════════════════
 # PAGE: ABOUT
 # ══════════════════════════════════════════════════════
-elif page == "ℹ️ About Veylix":
-    st.markdown('<div class="page-header"><span class="page-header-icon">ℹ️</span>'
-                '<div><div class="page-header-title">About Veylix</div>'
-                '<div class="page-header-desc">Project information, technologies, and team</div></div></div>',
+elif page == "About Veylix":
+    st.markdown(f'<div class="page-header">'
+                f'{page_icon_about()}'
+                f'<div><div class="page-header-title">About Veylix</div>'
+                f'<div class="page-header-desc">Project information, technologies, and team</div></div></div>',
                 unsafe_allow_html=True)
 
     c1, c2 = st.columns(2, gap="medium")
