@@ -397,6 +397,8 @@ div[data-testid="stAlert"]{background:rgba(255,255,255,.6) !important;border:1px
 .badge{display:inline-block;background:#0B3E73;color:#fff !important;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:12px;font-weight:600;box-shadow:0 3px 12px rgba(11,62,115,.2)}
 .empty{border:1px dashed rgba(11,62,115,.15);border-radius:14px;padding:38px 16px;text-align:center;color:#4A6279;background:rgba(255,255,255,.4)}
 .url-box{background:rgba(11,62,115,.05);border:1.5px dashed rgba(11,62,115,.2);border-radius:10px;padding:10px 14px;font-family:'Courier New',monospace;word-break:break-all;color:#0B3E73;font-size:.9rem}
+
+/* ── Result card ── */
 .result{border-radius:14px;padding:18px 22px;margin-top:14px;box-shadow:0 2px 12px rgba(0,0,0,.03)}
 .res-title{font-size:1.8rem;font-weight:900;line-height:1.15}
 .score{font-size:1.05rem;font-weight:700;color:#0B3E73;margin-top:4px}
