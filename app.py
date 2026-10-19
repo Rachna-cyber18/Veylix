@@ -265,6 +265,7 @@ section[data-testid="stSidebar"]{
   backdrop-filter:blur(20px) !important;-webkit-backdrop-filter:blur(20px) !important;
   border-right:1px solid rgba(0,0,0,.06) !important;
 }
+section[data-testid="stSidebar"] > div:first-child{padding-top:0.8rem !important}
 section[data-testid="stSidebar"] *{color:#12263A !important}
 
 /* Style the radio buttons as navigation items */
@@ -273,15 +274,24 @@ section[data-testid="stSidebar"] .stRadio > label{
   font-size:.65rem !important;font-weight:800 !important;text-transform:uppercase;
   letter-spacing:.14em;color:#4A6279 !important;margin-bottom:6px !important;padding-left:4px !important}
 section[data-testid="stSidebar"] .stRadio > div > label{
-  background:transparent !important;border:none !important;border-radius:10px !important;
-  padding:10px 14px !important;margin:0 !important;cursor:pointer !important;
-  transition:all .15s !important;font-weight:600 !important;font-size:.88rem !important;color:#4A6279 !important}
+  background-color:transparent !important;border:none !important;border-radius:10px !important;
+  padding:10px 14px 10px 42px !important;margin:0 !important;cursor:pointer !important;
+  transition:all .15s !important;font-weight:600 !important;font-size:.88rem !important;color:#4A6279 !important;
+  background-repeat:no-repeat !important;background-position:14px center !important;background-size:18px 18px !important}
 section[data-testid="stSidebar"] .stRadio > div > label:hover{
-  background:rgba(11,62,115,.05) !important;color:#0B3E73 !important}
+  background-color:rgba(11,62,115,.05) !important;color:#0B3E73 !important}
 section[data-testid="stSidebar"] .stRadio > div > label[data-checked="true"],
 section[data-testid="stSidebar"] .stRadio > div > label:has(input:checked){
-  background:rgba(11,62,115,.1) !important;color:#0B3E73 !important;font-weight:800 !important;
+  background-color:rgba(11,62,115,.1) !important;color:#0B3E73 !important;font-weight:800 !important;
   box-shadow:0 1px 4px rgba(11,62,115,.08) !important}
+section[data-testid="stSidebar"] .stRadio > div > label:nth-of-type(1){
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 28,9 28,23 16,30 4,23 4,9' fill='none' stroke='%230B3E73' stroke-width='2.5'/%3E%3Cpolygon points='16,8 23,12 23,20 16,24 9,20 9,12' fill='none' stroke='%230B3E73' stroke-width='1.2' opacity='.4'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%230B3E73'/%3E%3Cline x1='16' y1='16' x2='24' y2='10' stroke='%230B3E73' stroke-width='1.5' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E") !important}
+section[data-testid="stSidebar"] .stRadio > div > label:nth-of-type(2){
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 L27 10 L27 22 L22 28 L10 28 L5 22 L5 10 Z' fill='none' stroke='%2310B981' stroke-width='2.5'/%3E%3Cline x1='16' y1='3' x2='16' y2='28' stroke='%2310B981' stroke-width='1' opacity='.3'/%3E%3Ccircle cx='16' cy='15' r='2' fill='%2310B981'/%3E%3C/svg%3E") !important}
+section[data-testid="stSidebar"] .stRadio > div > label:nth-of-type(3){
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 L26 8 V16 C26 23 21 27 16 29 C11 27 6 23 6 16 V8 Z' fill='none' stroke='%23F59E0B' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='14' r='3.5' fill='none' stroke='%23F59E0B' stroke-width='1.8'/%3E%3Cline x1='16' y1='18' x2='16' y2='23' stroke='%23F59E0B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") !important}
+section[data-testid="stSidebar"] .stRadio > div > label:nth-of-type(4){
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z' fill='none' stroke='%23A78BFA' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23A78BFA'/%3E%3C/svg%3E") !important}
 
 /* Tabs */
 .stTabs [data-baseweb="tab-list"]{gap:0;border-bottom:1px solid rgba(0,0,0,.08)}
@@ -665,7 +675,7 @@ st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
 # ── Sidebar — Navigation + Analysis Overview ──
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:-4px">
         {vx_logo(30, "vxLogoSB")}
         <span style="font-size:1.12rem;font-weight:900;letter-spacing:.05em;color:#0B3E73 !important">VEYLIX</span>
     </div>
