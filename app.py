@@ -265,7 +265,7 @@ section[data-testid="stSidebar"]{
   backdrop-filter:blur(20px) !important;-webkit-backdrop-filter:blur(20px) !important;
   border-right:1px solid rgba(0,0,0,.06) !important;
 }
-section[data-testid="stSidebar"] > div:first-child{padding-top:0.3rem !important}
+section[data-testid="stSidebar"] > div:first-child{padding-top:0 !important}
 section[data-testid="stSidebar"] *{color:#12263A !important}
 
 /* Style the radio buttons as navigation items */
@@ -704,7 +704,7 @@ st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
 # ── Sidebar — Navigation + Analysis Overview ──
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:-12px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:-22px">
         {vx_logo(30, "vxLogoSB")}
         <span style="font-size:1.12rem;font-weight:900;letter-spacing:.05em;color:#0B3E73 !important">VEYLIX</span>
     </div>
