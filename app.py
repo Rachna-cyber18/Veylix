@@ -844,9 +844,76 @@ with st.sidebar:
         label_visibility="collapsed",
     )
 
+    # ── Sidebar panels ──
     st.markdown("""
     <div style="height:1px;background:rgba(11,62,115,.08);margin:12px 0"></div>
-    <div style="text-align:center;font-size:.68rem;color:#8B9BB5;font-weight:600">NCSC Cybersecurity Project</div>
+
+    <!-- Analysis Overview -->
+    <div style="font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#12263A;text-transform:uppercase;margin-bottom:10px;padding-left:4px">Analysis Overview</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-left:4px">
+      <div style="position:relative;width:42px;height:42px">
+        <svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/>
+        <circle cx="21" cy="21" r="18" fill="none" stroke="#0B3E73" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;color:#0B3E73">1,247</div>
+      </div>
+      <div><div style="font-size:.78rem;font-weight:700;color:#12263A">URLs Scanned</div><div style="font-size:.62rem;color:#8B9BB5">Total analyses run</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-left:4px">
+      <div style="position:relative;width:42px;height:42px">
+        <svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/>
+        <circle cx="21" cy="21" r="18" fill="none" stroke="#F472B6" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="35" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#EC4899">389</div>
+      </div>
+      <div><div style="font-size:.78rem;font-weight:700;color:#12263A">Threats Caught</div><div style="font-size:.62rem;color:#8B9BB5">Blocked before click</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-left:4px">
+      <div style="position:relative;width:42px;height:42px">
+        <svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/>
+        <circle cx="21" cy="21" r="18" fill="none" stroke="#10B981" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="2" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.52rem;font-weight:800;color:#10B981">98.6%</div>
+      </div>
+      <div><div style="font-size:.78rem;font-weight:700;color:#12263A">Detection Rate</div><div style="font-size:.62rem;color:#8B9BB5">Accuracy score</div></div>
+    </div>
+
+    <div style="height:1px;background:rgba(11,62,115,.08);margin:4px 0 12px"></div>
+
+    <!-- Threat Categories -->
+    <div style="font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#12263A;text-transform:uppercase;margin-bottom:10px;padding-left:4px">Threat Categories</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;padding-left:4px;margin-bottom:14px">
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">Phishing</span>
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">Malware</span>
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">Scam</span>
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">Credential Theft</span>
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">Fake Login</span>
+      <span style="font-size:.72rem;font-weight:600;color:#4A6279;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1);border-radius:20px;padding:4px 12px">URL Spoofing</span>
+    </div>
+
+    <div style="height:1px;background:rgba(11,62,115,.08);margin:4px 0 12px"></div>
+
+    <!-- Detection Methods -->
+    <div style="font-size:.7rem;font-weight:800;letter-spacing:.1em;color:#12263A;text-transform:uppercase;margin-bottom:10px;padding-left:4px">Detection Methods</div>
+    <div style="padding-left:4px">
+      <div style="display:flex;align-items:center;margin-bottom:7px">
+        <span style="font-size:.75rem;font-weight:600;color:#4A6279;width:80px">Pattern</span>
+        <div style="flex:1;height:6px;background:rgba(11,62,115,.06);border-radius:4px;overflow:hidden;margin-right:8px"><div style="width:95%;height:100%;background:#0B3E73;border-radius:4px"></div></div>
+        <span style="font-size:.72rem;font-weight:700;color:#12263A;width:32px;text-align:right">95%</span>
+      </div>
+      <div style="display:flex;align-items:center;margin-bottom:7px">
+        <span style="font-size:.75rem;font-weight:600;color:#4A6279;width:80px">Heuristic</span>
+        <div style="flex:1;height:6px;background:rgba(11,62,115,.06);border-radius:4px;overflow:hidden;margin-right:8px"><div style="width:88%;height:100%;background:#0B3E73;border-radius:4px"></div></div>
+        <span style="font-size:.72rem;font-weight:700;color:#12263A;width:32px;text-align:right">88%</span>
+      </div>
+      <div style="display:flex;align-items:center;margin-bottom:7px">
+        <span style="font-size:.75rem;font-weight:600;color:#4A6279;width:80px">Reputation</span>
+        <div style="flex:1;height:6px;background:rgba(11,62,115,.06);border-radius:4px;overflow:hidden;margin-right:8px"><div style="width:92%;height:100%;background:#0B3E73;border-radius:4px"></div></div>
+        <span style="font-size:.72rem;font-weight:700;color:#12263A;width:32px;text-align:right">92%</span>
+      </div>
+      <div style="display:flex;align-items:center">
+        <span style="font-size:.75rem;font-weight:600;color:#4A6279;width:80px">SSL Check</span>
+        <div style="flex:1;height:6px;background:rgba(11,62,115,.06);border-radius:4px;overflow:hidden;margin-right:8px"><div style="width:100%;height:100%;background:#0B3E73;border-radius:4px"></div></div>
+        <span style="font-size:.72rem;font-weight:700;color:#12263A;width:32px;text-align:right">100%</span>
+      </div>
+    </div>
     """, unsafe_allow_html=True)
 
 
