@@ -68,8 +68,8 @@ def vx_logo(size, grad_id):
             f'<stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/>'
             f'<stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs>'
             f'<path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#{grad_id})" '
-            f'stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>'
-            f'<path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="2.5" '
+            f'stroke="rgba(255,255,255,.7)" stroke-width="2.5"/>'
+            f'<path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" '
             f'stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')
 
 
@@ -254,6 +254,7 @@ NAV_ITEMS = [
 # ── Global CSS ──
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
 .stApp{
   background:linear-gradient(180deg, #87CEEB 0%, #B8DFFF 30%, #E0F0FF 60%, #FFFFFF 100%);
@@ -277,7 +278,8 @@ section[data-testid="stSidebar"] *{color:#12263A !important}
 section[data-testid="stSidebar"] .stRadio > div{gap:2px !important}
 section[data-testid="stSidebar"] .stRadio > label{
   font-size:.65rem !important;font-weight:800 !important;text-transform:uppercase;
-  letter-spacing:.14em;color:#4A6279 !important;margin-bottom:6px !important;padding-left:4px !important}
+  letter-spacing:.14em;color:#4A6279 !important;margin-bottom:6px !important;padding-left:4px !important;
+  display:none !important}
 section[data-testid="stSidebar"] .stRadio label[data-baseweb="radio"],
 section[data-testid="stSidebar"] .stRadio > div > label,
 section[data-testid="stSidebar"] .stRadio > div > div > label,
@@ -363,6 +365,23 @@ section[data-testid="stSidebar"] .stRadio > div > div:nth-child(10) > label,
 section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > :nth-child(10) label,
 section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:nth-of-type(10){
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z' fill='none' stroke='%23A78BFA' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23A78BFA'/%3E%3C/svg%3E") !important}
+
+/* Sidebar section group headers via ::before */
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > :nth-child(1)::before{
+  content:"OVERVIEW";display:block;font-size:.6rem;font-weight:800;letter-spacing:.16em;
+  color:#8B9BB5;text-transform:uppercase;padding:10px 0 6px 4px;margin-bottom:2px}
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > :nth-child(4)::before{
+  content:"HOW IT WORKS";display:block;font-size:.6rem;font-weight:800;letter-spacing:.16em;
+  color:#8B9BB5;text-transform:uppercase;padding:14px 0 6px 4px;margin-bottom:2px;
+  border-top:1px solid rgba(11,62,115,.08);margin-top:6px}
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > :nth-child(6)::before{
+  content:"PROJECT";display:block;font-size:.6rem;font-weight:800;letter-spacing:.16em;
+  color:#8B9BB5;text-transform:uppercase;padding:14px 0 6px 4px;margin-bottom:2px;
+  border-top:1px solid rgba(11,62,115,.08);margin-top:6px}
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > :nth-child(9)::before{
+  content:"LEARN";display:block;font-size:.6rem;font-weight:800;letter-spacing:.16em;
+  color:#8B9BB5;text-transform:uppercase;padding:14px 0 6px 4px;margin-bottom:2px;
+  border-top:1px solid rgba(11,62,115,.08);margin-top:6px}
 
 /* Tabs */
 .stTabs [data-baseweb="tab-list"]{gap:0;border-bottom:1px solid rgba(0,0,0,.08)}
@@ -777,12 +796,14 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
     st.session_state.setdefault(key, default)
 
 
-# ── Sidebar — Navigation + Analysis Overview ──
+# ── Sidebar — Navigation ──
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:-22px">
-        {vx_logo(30, "vxLogoSB")}
-        <span style="font-size:1.12rem;font-weight:900;letter-spacing:.05em;color:#0B3E73 !important">VEYLIX</span>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:-22px;padding-left:4px">
+        {vx_logo(38, "vxLogoSB")}
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
+          background:linear-gradient(135deg,#0B3E73,#1565C0);padding:6px 20px;border-radius:10px;
+          box-shadow:0 4px 14px rgba(11,62,115,.25)">VEYLIX</span>
     </div>
 
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;
@@ -803,42 +824,21 @@ with st.sidebar:
         "Navigation",
         NAV_ITEMS,
         index=default_index,
-        label_visibility="visible",
+        label_visibility="collapsed",
     )
 
-    st.markdown(f"""
-    <div class="sb-glass">
-        <div class="sb-title">Analysis Overview</div>
-        {ring_chart("1,247", "#0B3E73", "0", "URLs Scanned", "Total analyses run")}
-        {ring_chart("389", "#C82828", "95", "Threats Caught", "Blocked before click")}
-        {ring_chart("98.6%", "#10B981", "2", "Detection Rate", "Accuracy score")}
-    </div>
-
-    <div class="sb-glass">
-        <div class="sb-title">Threat Categories</div>
-        <div>
-            <span class="sb-tag">Phishing</span>
-            <span class="sb-tag">Malware</span>
-            <span class="sb-tag">Scam</span>
-            <span class="sb-tag">Credential Theft</span>
-            <span class="sb-tag">Fake Login</span>
-            <span class="sb-tag">URL Spoofing</span>
-        </div>
-    </div>
-
-    <div class="sb-glass">
-        <div class="sb-title">Detection Methods</div>
-        {method_bar("Pattern", 95)}
-        {method_bar("Heuristic", 88)}
-        {method_bar("Reputation", 92)}
-        {method_bar("SSL Check", 100)}
-    </div>
+    st.markdown("""
+    <div style="height:1px;background:rgba(11,62,115,.08);margin:12px 0"></div>
+    <div style="text-align:center;font-size:.68rem;color:#8B9BB5;font-weight:600">NCSC Cybersecurity Project</div>
     """, unsafe_allow_html=True)
 
 
 # ── Show page header on all pages except Problem Statement ──
 if page != "Problem Statement":
-    st.markdown(f'<div class="vx-title">{vx_logo(40, "vxLogoHead")}Veylix</div>'
+    st.markdown(f'<div class="vx-title">{vx_logo(56, "vxLogoHead")}'
+                f'<span style="font-family:\'Rajdhani\',sans-serif;font-weight:700;font-size:2rem;letter-spacing:.1em;color:#fff;'
+                f'background:linear-gradient(135deg,#0B3E73,#1565C0);padding:8px 28px;border-radius:14px;'
+                f'box-shadow:0 6px 20px rgba(11,62,115,.3)">Veylix</span></div>'
                 '<div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>'
                 '<div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or '
                 'social-media accounts. The messages below are simulated to show how automatic incoming-link detection '
@@ -1260,13 +1260,20 @@ elif page == "System Architecture":
 
     st.markdown('<div class="vx-note">This flowchart shows what happens behind the scenes when you scan a URL with Veylix — from the moment you paste a message to the final result.</div>', unsafe_allow_html=True)
 
+    _flow_icon_paste = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="6" y="4" width="20" height="24" rx="3" stroke="#0B3E73" stroke-width="2"/><path d="M11 4 V7 C11 8 12 9 13 9 H19 C20 9 21 8 21 7 V4" stroke="#0B3E73" stroke-width="2"/><line x1="11" y1="14" x2="21" y2="14" stroke="#0B3E73" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="21" y2="18" stroke="#0B3E73" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="22" x2="17" y2="22" stroke="#0B3E73" stroke-width="1.5" stroke-linecap="round"/></svg>'
+    _flow_icon_link = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M13 19 L19 13" stroke="#1565C0" stroke-width="2" stroke-linecap="round"/><path d="M17 21 L19 19 C21 17 21 14 19 12 L20 11 C23 14 23 18 20 20 L18 22 C15 25 11 25 9 22 C7 20 7 16 9 14 L11 12 L13 14 L11 16 C10 17 10 19 11 20 C12 21 14 21 15 20 Z" fill="#1565C0"/><path d="M15 11 L13 13 C11 15 11 18 13 20 L12 21 C9 18 9 14 12 12 L14 10 C17 7 21 7 23 10 C25 12 25 16 23 18 L21 20 L19 18 L21 16 C22 15 22 13 21 12 C20 11 18 11 17 12 Z" fill="#1565C0"/></svg>'
+    _flow_icon_scan = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="14" cy="14" r="8" stroke="#7C3AED" stroke-width="2"/><line x1="20" y1="20" x2="27" y2="27" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/><path d="M11 14 L13 16 L17 12" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    _flow_icon_score = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="3" stroke="#E8A44A" stroke-width="2"/><line x1="10" y1="22" x2="10" y2="16" stroke="#E8A44A" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="22" x2="16" y2="12" stroke="#E8A44A" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="14" stroke="#E8A44A" stroke-width="2.5" stroke-linecap="round"/></svg>'
+    _flow_icon_color = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="12" cy="14" r="5" stroke="#10B981" stroke-width="2"/><circle cx="20" cy="14" r="5" stroke="#E8A44A" stroke-width="2"/><circle cx="16" cy="20" r="5" stroke="#C82828" stroke-width="2"/></svg>'
+    _flow_icon_result = '<svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="6" y="4" width="20" height="24" rx="3" stroke="#0B3E73" stroke-width="2"/><path d="M11 11 L13 13 L17 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="11" y1="17" x2="21" y2="17" stroke="#0B3E73" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="21" x2="21" y2="21" stroke="#0B3E73" stroke-width="1.5" stroke-linecap="round"/></svg>'
+
     flow_steps = [
-        ("📩", "User Pastes a Message", "The user pastes a message received from WhatsApp, Gmail, SMS, or social media"),
-        ("🔗", "Extract URL from Message", "Veylix automatically finds and pulls out any link hidden inside the text"),
-        ("🔍", "Run Security Checks", "Pattern matching, domain analysis, SSL verification, and heuristic analysis run on the URL"),
-        ("📊", "Calculate Risk Score", "Each check adds risk points. The total gives a score from 0 (safe) to 100 (dangerous)"),
-        ("🎨", "Assign Color Code", "Score 0-29 = GREEN (safe), 30-59 = YELLOW (caution), 60-100 = RED (danger)"),
-        ("📋", "Show Complete Result", "User sees: risk level, score, reasons, URL anatomy, precaution steps, and rule transparency"),
+        (_flow_icon_paste, "User Pastes a Message", "The user pastes a message received from WhatsApp, Gmail, SMS, or social media"),
+        (_flow_icon_link, "Extract URL from Message", "Veylix automatically finds and pulls out any link hidden inside the text"),
+        (_flow_icon_scan, "Run Security Checks", "Pattern matching, domain analysis, SSL verification, and heuristic analysis run on the URL"),
+        (_flow_icon_score, "Calculate Risk Score", "Each check adds risk points. The total gives a score from 0 (safe) to 100 (dangerous)"),
+        (_flow_icon_color, "Assign Color Code", "Score 0-29 = GREEN (safe), 30-59 = YELLOW (caution), 60-100 = RED (danger)"),
+        (_flow_icon_result, "Show Complete Result", "User sees: risk level, score, reasons, URL anatomy, precaution steps, and rule transparency"),
     ]
 
     for i, (icon, title, desc) in enumerate(flow_steps):
@@ -1544,7 +1551,7 @@ elif page == "About Veylix":
     with c1:
         st.markdown(
             '<div class="about-card">'
-            '<div class="about-icon" style="background:rgba(11,62,115,.08)">🎯</div>'
+            '<div class="about-icon" style="background:rgba(11,62,115,.08)"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#0B3E73" stroke-width="2"/><circle cx="16" cy="16" r="7" stroke="#0B3E73" stroke-width="1.5" opacity=".5"/><circle cx="16" cy="16" r="2.5" fill="#0B3E73"/></svg></div>'
             '<div class="about-h">What is Veylix?</div>'
             '<div class="about-p">Veylix is an intelligent URL threat detection and risk analysis tool. '
             'It scans links received via WhatsApp, Gmail, SMS and social media to detect phishing, malware, '
@@ -1553,7 +1560,7 @@ elif page == "About Veylix":
     with c2:
         st.markdown(
             '<div class="about-card">'
-            '<div class="about-icon" style="background:rgba(16,185,129,.08)">⚙️</div>'
+            '<div class="about-icon" style="background:rgba(16,185,129,.08)"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="5" stroke="#10B981" stroke-width="2"/><path d="M16 4 V8 M16 24 V28 M4 16 H8 M24 16 H28 M7.5 7.5 L10.3 10.3 M21.7 21.7 L24.5 24.5 M7.5 24.5 L10.3 21.7 M21.7 10.3 L24.5 7.5" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg></div>'
             '<div class="about-h">How Does It Work?</div>'
             '<div class="about-p">Veylix uses a multi-layered analysis approach: pattern matching to detect known '
             'phishing patterns, heuristic analysis for suspicious behaviors, domain reputation checking against '
@@ -1564,7 +1571,7 @@ elif page == "About Veylix":
     with c3:
         st.markdown(
             '<div class="about-card">'
-            '<div class="about-icon" style="background:rgba(232,164,74,.08)">🛠️</div>'
+            '<div class="about-icon" style="background:rgba(232,164,74,.08)"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M18 6 L26 6 L26 14 L16 24 L8 16 Z" stroke="#E8A44A" stroke-width="2" stroke-linejoin="round"/><circle cx="21" cy="11" r="2" fill="#E8A44A"/><path d="M10 22 L6 26" stroke="#E8A44A" stroke-width="2" stroke-linecap="round"/></svg></div>'
             '<div class="about-h">Technologies Used</div>'
             '<div class="about-p"><b>Python</b> — core programming language<br>'
             '<b>Streamlit</b> — web application framework<br>'
@@ -1574,7 +1581,7 @@ elif page == "About Veylix":
     with c4:
         st.markdown(
             '<div class="about-card">'
-            '<div class="about-icon" style="background:rgba(200,40,40,.06)">👩‍💻</div>'
+            '<div class="about-icon" style="background:rgba(200,40,40,.06)"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="#C82828" stroke-width="2"/><path d="M8 28 C8 22 11 19 16 19 C21 19 24 22 24 28" stroke="#C82828" stroke-width="2" stroke-linecap="round"/></svg></div>'
             '<div class="about-h">Built By</div>'
             '<div class="about-p">Created as part of the <b>MDC Project</b> for CSE Cybersecurity, Batch 2025.<br><br>'
             '<b>Maitreyi</b> — 2025A7R033<br>'
@@ -1584,8 +1591,8 @@ elif page == "About Veylix":
     st.markdown(f"""
     <div style="margin-top:2rem;padding:18px 22px;border-radius:14px;
       background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.06);text-align:center">
-        <div style="margin-bottom:12px">{vx_logo(48, "vxLogoAbout")}</div>
-        <div style="font-weight:900;font-size:1.2rem;color:#0B3E73;margin-bottom:4px">Veylix v1.0</div>
+        <div style="margin-bottom:12px">{vx_logo(52, "vxLogoAbout")}</div>
+        <div style="margin-bottom:4px"><span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:#fff;background:linear-gradient(135deg,#0B3E73,#1565C0);padding:6px 22px;border-radius:10px;box-shadow:0 4px 14px rgba(11,62,115,.25)">Veylix</span> <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;color:#0B3E73;margin-left:4px">v1.0</span></div>
         <div style="font-size:.85rem;color:#4A6279">Intelligent URL Threat Detection & Risk Analysis</div>
         <div style="font-size:.78rem;color:#8B9BB5;margin-top:8px">Prototype — NCSC Cybersecurity Project 2025</div>
     </div>
@@ -1593,8 +1600,10 @@ elif page == "About Veylix":
 
 
 # ── Footer ──
-st.markdown("""<hr style="margin-top:3rem;border:none;border-top:1px solid #B8C6D4">
+st.markdown(f"""<hr style="margin-top:3rem;border:none;border-top:1px solid #B8C6D4">
 <div style="text-align:center;padding:12px 0 20px;color:#4A6279;font-size:.85rem;line-height:1.8">
-  © 2025 Veylix — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
+  © 2025 <span style="font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.1em;color:#fff;
+    background:linear-gradient(135deg,#0B3E73,#1565C0);padding:3px 14px;border-radius:8px;
+    box-shadow:0 3px 10px rgba(11,62,115,.2);font-size:.85rem">Veylix</span> — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
   <span style="color:#2C4257"><b>Maitreyi</b> (2025A7R033) &nbsp;•&nbsp; <b>Rachna Sharma</b> (2025A7R047)</span>
 </div>""", unsafe_allow_html=True)
