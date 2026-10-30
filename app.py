@@ -263,7 +263,24 @@ st.markdown("""<style>
   font-family:'DM Sans',sans-serif;
 }
 header[data-testid="stHeader"]{background:transparent !important}
-.block-container{max-width:1150px;padding-top:2rem}
+.block-container{max-width:1150px;padding-top:3.8rem}
+
+/* Sticky Veylix header bar */
+.vx-sticky{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;gap:12px;
+  padding:9px 24px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(11,62,115,.08);
+  box-shadow:0 2px 12px rgba(11,62,115,.06);
+}
+.vx-sticky .vx-stag{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.1em;color:#fff;
+  background:linear-gradient(135deg,#0B3E73,#1565C0);padding:4px 16px;border-radius:8px;
+  box-shadow:0 3px 10px rgba(11,62,115,.2);
+}
+.vx-sticky .vx-sdesc{color:#8B9BB5;font-size:.76rem;font-weight:600;margin-left:4px}
 
 /* Sidebar */
 section[data-testid="stSidebar"]{
@@ -832,6 +849,15 @@ with st.sidebar:
     <div style="text-align:center;font-size:.68rem;color:#8B9BB5;font-weight:600">NCSC Cybersecurity Project</div>
     """, unsafe_allow_html=True)
 
+
+# ── Sticky header (always visible on scroll) ──
+st.markdown(f"""
+<div class="vx-sticky">
+    {vx_logo(30, "vxLogoSticky")}
+    <span class="vx-stag">VEYLIX</span>
+    <span class="vx-sdesc">Intelligent URL Threat Detection</span>
+</div>
+""", unsafe_allow_html=True)
 
 # ── Show page header on all pages except Problem Statement ──
 if page != "Problem Statement":
