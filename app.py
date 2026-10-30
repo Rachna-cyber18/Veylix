@@ -836,7 +836,9 @@ with st.sidebar:
             background:linear-gradient(135deg,#FFE2A9,#FFB8C6,#C6B6F0);
             clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);
             display:flex;align-items:center;justify-content:center">
-            <span class="vx-badge" style="font-size:16px;font-weight:700;line-height:1;margin-top:1px">✓</span>
+            <span style="display:inline-block;width:14px;height:10px;margin-top:2px;
+              border-left:3px solid #fff;border-bottom:3px solid #fff;
+              transform:rotate(-45deg);border-radius:1px"></span>
           </div>
         </div>
         <span class="vx-badge" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
