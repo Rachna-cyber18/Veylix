@@ -267,7 +267,7 @@ header[data-testid="stHeader"]{background:transparent !important}
 
 /* Sticky Veylix header bar */
 .vx-sticky{
-  position:fixed;top:0;left:0;right:0;z-index:9999;
+  position:fixed;top:0;left:245px;right:0;z-index:9999;
   display:flex;align-items:center;gap:12px;
   padding:9px 24px;
   background:rgba(255,255,255,.72);
