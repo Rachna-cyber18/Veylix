@@ -73,13 +73,15 @@ def vx_logo(size, grad_id):
             f'stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')
 
 def vx_logo_safe(size):
-    """Sidebar-safe logo — uses solid fill to bypass Streamlit sidebar HTML
-    sanitization that strips <defs>/<linearGradient> elements."""
-    return (f'<svg width="{size}" height="{size}" viewBox="0 0 40 40" style="flex-shrink:0">'
-            f'<path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="#FFB8C6" '
-            f'stroke="rgba(255,255,255,.7)" stroke-width="2.5"/>'
-            f'<path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" '
-            f'stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')
+    """Sidebar-safe logo — pure CSS hexagon (no SVG) because Streamlit
+    strips <svg> tags from st.markdown in the sidebar."""
+    return (f'<div style="width:{size}px;height:{size}px;'
+            f'background:linear-gradient(135deg,#FFE2A9,#FFB8C6,#C6B6F0);'
+            f'clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);'
+            f'display:inline-flex;align-items:center;justify-content:center;flex-shrink:0'
+            f'">'
+            f'<span style="color:#fff !important;font-size:{max(int(size*0.38),12)}px;'
+            f'font-weight:900;line-height:1;margin-top:1px">✓</span></div>')
 
 
 # ── Page header icon functions ──
@@ -299,6 +301,7 @@ section[data-testid="stSidebar"]{
 }
 section[data-testid="stSidebar"] > div:first-child{padding-top:0 !important}
 section[data-testid="stSidebar"] *:not(svg):not(svg *){color:#12263A !important}
+section[data-testid="stSidebar"] .vx-badge{color:#fff !important}
 
 /* Style the radio buttons as navigation items */
 section[data-testid="stSidebar"] .stRadio > div{gap:2px !important}
@@ -825,11 +828,10 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
 # ── Sidebar — Navigation ──
 with st.sidebar:
     st.markdown(f"""
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:-22px;padding-left:4px">
-        {vx_logo_safe(38)}
-        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
-          background:linear-gradient(135deg,#0B3E73,#1565C0);padding:6px 20px;border-radius:10px;
-          box-shadow:0 4px 14px rgba(11,62,115,.25)">VEYLIX</span>
+    <div style="margin-bottom:14px;margin-top:-22px;padding-left:4px">
+        <span class="vx-badge" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
+          background:linear-gradient(135deg,#0B3E73,#1565C0);padding:8px 24px;border-radius:10px;
+          box-shadow:0 4px 14px rgba(11,62,115,.25);display:inline-block">VEYLIX</span>
     </div>
 
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;
