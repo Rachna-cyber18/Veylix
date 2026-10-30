@@ -829,11 +829,15 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
 with st.sidebar:
     st.markdown(f"""
     <div style="margin-bottom:14px;margin-top:-22px;padding-left:4px;display:flex;align-items:center;gap:10px">
-        <div style="width:38px;height:38px;
-          background:linear-gradient(135deg,#FFE2A9,#FFB8C6,#C6B6F0);
+        <div style="width:42px;height:42px;background:rgba(255,255,255,.7);
           clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);
           display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
-          <span class="vx-badge" style="font-size:16px;line-height:1;margin-top:1px">✓</span>
+          <div style="width:36px;height:36px;
+            background:linear-gradient(135deg,#FFE2A9,#FFB8C6,#C6B6F0);
+            clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);
+            display:flex;align-items:center;justify-content:center">
+            <span class="vx-badge" style="font-size:16px;font-weight:700;line-height:1;margin-top:1px">✓</span>
+          </div>
         </div>
         <span class="vx-badge" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
           background:linear-gradient(135deg,#0B3E73,#1565C0);padding:8px 24px;border-radius:10px;
