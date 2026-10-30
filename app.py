@@ -829,18 +829,7 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
 with st.sidebar:
     st.markdown(f"""
     <div style="margin-bottom:14px;margin-top:-22px;padding-left:4px;display:flex;align-items:center;gap:10px">
-        <div style="width:42px;height:42px;background:rgba(255,255,255,.7);
-          clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);
-          display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">
-          <div style="width:36px;height:36px;
-            background:linear-gradient(135deg,#FFE2A9,#FFB8C6,#C6B6F0);
-            clip-path:polygon(50% 5%,93% 25%,93% 75%,50% 95%,7% 75%,7% 25%);
-            display:flex;align-items:center;justify-content:center">
-            <span style="display:inline-block;width:14px;height:10px;margin-top:2px;
-              border-left:3px solid #fff;border-bottom:3px solid #fff;
-              transform:rotate(-45deg);border-radius:1px"></span>
-          </div>
-        </div>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZFMkE5Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNGRkI4QzYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDNkI2RjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMjAgNCBMMzIgMTIgVjI4IEwyMCAzNiBMOCAyOCBWMTIgWiIgZmlsbD0idXJsKCNnKSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LC43KSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48cGF0aCBkPSJNMTQgMTggTDE4IDIyIEwyNiAxNCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIi8+PC9zdmc+" width="42" height="42" style="flex-shrink:0" alt="Veylix"/>
         <span class="vx-badge" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
           background:linear-gradient(135deg,#0B3E73,#1565C0);padding:8px 24px;border-radius:10px;
           box-shadow:0 4px 14px rgba(11,62,115,.25);display:inline-block">VEYLIX</span>
