@@ -289,7 +289,7 @@ section[data-testid="stSidebar"]{
   border-right:1px solid rgba(0,0,0,.06) !important;
 }
 section[data-testid="stSidebar"] > div:first-child{padding-top:0 !important}
-section[data-testid="stSidebar"] *{color:#12263A !important}
+section[data-testid="stSidebar"] *:not(svg):not(svg *){color:#12263A !important}
 
 /* Style the radio buttons as navigation items */
 section[data-testid="stSidebar"] .stRadio > div{gap:2px !important}
