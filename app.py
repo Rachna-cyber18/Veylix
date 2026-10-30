@@ -73,6 +73,19 @@ def vx_logo(size, grad_id):
             f'<path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" '
             f'stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')
 
+def vx_logo_safe(size):
+    """Base64 data-URI version — immune to Streamlit sidebar HTML sanitization."""
+    svg = ('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">'
+           '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
+           '<stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/>'
+           '<stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs>'
+           '<path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#g)" '
+           'stroke="rgba(255,255,255,0.7)" stroke-width="2.5"/>'
+           '<path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" '
+           'stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>')
+    b64 = base64.b64encode(svg.encode()).decode()
+    return f'<img src="data:image/svg+xml;base64,{b64}" width="{size}" height="{size}" style="flex-shrink:0">'
+
 
 # ── Page header icon functions ──
 def page_icon_problem():
@@ -818,7 +831,7 @@ for key, default in (("msg", None), ("animate", False), ("last_id", None), ("cli
 with st.sidebar:
     st.markdown(f"""
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:-22px;padding-left:4px">
-        {vx_logo(38, "vxLogoSB")}
+        {vx_logo_safe(38)}
         <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.1em;color:#fff !important;
           background:linear-gradient(135deg,#0B3E73,#1565C0);padding:6px 20px;border-radius:10px;
           box-shadow:0 4px 14px rgba(11,62,115,.25)">VEYLIX</span>
