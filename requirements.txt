@@ -1,2 +1,1 @@
-streamlit>=1.36
-# tldextract   (optional - not needed for this prototype)
+# No external dependencies needed — all pure Python

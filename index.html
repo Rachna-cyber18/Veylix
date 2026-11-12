@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veylix — URL Threat Detection</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🛡️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sticky Header -->
+  <div class="vx-sticky">
+    <svg width="30" height="30" viewBox="0 0 40 40" style="flex-shrink:0">
+      <defs><linearGradient id="vxStickyG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs>
+      <path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxStickyG)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/>
+      <path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="vx-stag">VEYLIX</span>
+    <span class="vx-sdesc">Intelligent URL Threat Detection</span>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZFMkE5Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNGRkI4QzYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNDNkI2RjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMjAgNCBMMzIgMTIgVjI4IEwyMCAzNiBMOCAyOCBWMTIgWiIgZmlsbD0idXJsKCNnKSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LC43KSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48cGF0aCBkPSJNMTQgMTggTDE4IDIyIEwyNiAxNCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIi8+PC9zdmc+" width="42" height="42" alt="Veylix"/>
+      <span class="vx-badge">VEYLIX</span>
+    </div>
+    <div class="sb-status">
+      <div class="sb-status-dot"></div>
+      <div class="sb-status-text">Protection Active</div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-group-label">OVERVIEW</div>
+      <a class="sb-item active" data-page="problem" data-icon="problem">Problem Statement</a>
+      <a class="sb-item" data-page="solution" data-icon="solution">Our Solution</a>
+      <a class="sb-item" data-page="objectives" data-icon="objectives">Objectives</a>
+
+      <div class="sb-group-label" style="border-top:1px solid rgba(11,62,115,.08);padding-top:14px;margin-top:6px">HOW IT WORKS</div>
+      <a class="sb-item" data-page="techniques" data-icon="techniques">Smart Techniques</a>
+      <a class="sb-item" data-page="architecture" data-icon="architecture">System Architecture</a>
+
+      <div class="sb-group-label" style="border-top:1px solid rgba(11,62,115,.08);padding-top:14px;margin-top:6px">PROJECT</div>
+      <a class="sb-item" data-page="milestone" data-icon="milestone">Next Milestone</a>
+      <a class="sb-item" data-page="comparison" data-icon="comparison">Comparison</a>
+      <a class="sb-item" data-page="statistics" data-icon="statistics">Statistics</a>
+
+      <div class="sb-group-label" style="border-top:1px solid rgba(11,62,115,.08);padding-top:14px;margin-top:6px">LEARN</div>
+      <a class="sb-item" data-page="tips" data-icon="tips">Safety Tips</a>
+      <a class="sb-item" data-page="about" data-icon="about">About Veylix</a>
+    </nav>
+
+    <!-- Sidebar panels -->
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">Analysis Overview</div>
+    <div class="sb-stat-row">
+      <div class="sb-ring"><svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/><circle cx="21" cy="21" r="18" fill="none" stroke="#0B3E73" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg><div class="sb-ring-num" style="color:#0B3E73">1,247</div></div>
+      <div><div class="sb-stat-label">URLs Scanned</div><div class="sb-stat-sub">Total analyses run</div></div>
+    </div>
+    <div class="sb-stat-row">
+      <div class="sb-ring"><svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/><circle cx="21" cy="21" r="18" fill="none" stroke="#F472B6" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="35" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg><div class="sb-ring-num" style="color:#EC4899">389</div></div>
+      <div><div class="sb-stat-label">Threats Caught</div><div class="sb-stat-sub">Blocked before click</div></div>
+    </div>
+    <div class="sb-stat-row">
+      <div class="sb-ring"><svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="18" fill="none" stroke="rgba(11,62,115,.08)" stroke-width="3.5"/><circle cx="21" cy="21" r="18" fill="none" stroke="#10B981" stroke-width="3.5" stroke-dasharray="113" stroke-dashoffset="2" stroke-linecap="round" transform="rotate(-90 21 21)"/></svg><div class="sb-ring-num" style="color:#10B981;font-size:.52rem">98.6%</div></div>
+      <div><div class="sb-stat-label">Detection Rate</div><div class="sb-stat-sub">Accuracy score</div></div>
+    </div>
+
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">Threat Categories</div>
+    <div class="sb-tags">
+      <span class="sb-tag">Phishing</span>
+      <span class="sb-tag">Malware</span>
+      <span class="sb-tag">Scam</span>
+      <span class="sb-tag">Credential Theft</span>
+      <span class="sb-tag">Fake Login</span>
+      <span class="sb-tag">URL Spoofing</span>
+    </div>
+
+    <div class="sb-divider"></div>
+    <div class="sb-section-title">Detection Methods</div>
+    <div class="sb-methods">
+      <div class="sb-method"><span>Pattern</span><div class="sb-method-bar"><div style="width:95%"></div></div><span class="sb-method-pct">95%</span></div>
+      <div class="sb-method"><span>Heuristic</span><div class="sb-method-bar"><div style="width:88%"></div></div><span class="sb-method-pct">88%</span></div>
+      <div class="sb-method"><span>Reputation</span><div class="sb-method-bar"><div style="width:92%"></div></div><span class="sb-method-pct">92%</span></div>
+      <div class="sb-method"><span>SSL Check</span><div class="sb-method-bar"><div style="width:100%"></div></div><span class="sb-method-pct">100%</span></div>
+    </div>
+  </aside>
+
+  <!-- Mobile menu toggle -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ========== PAGE: PROBLEM STATEMENT ========== -->
+    <section class="page" id="page-problem">
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#EF4444,#DC2626)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><path d="M16 4 L28 26 H4 Z" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/><line x1="16" y1="13" x2="16" y2="19" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="23" r="1.5" fill="#fff"/></svg>
+        </div>
+        <div><div class="ph-title">Problem Statement</div><div class="ph-desc">Why we built Veylix</div></div>
+      </div>
+
+      <div class="ps-hero">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="margin-bottom:16px"><defs><linearGradient id="vxPS" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxPS)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <div class="ps-big">Fake Links Are Everywhere</div>
+        <div class="ps-sub">Every day, people get fake messages on <b>WhatsApp, Gmail, SMS</b> and social media. These messages have dangerous links that look real — but they steal your passwords, bank details, and personal information.<br><br>Most people click on these links <b>within 60 seconds</b> — before they even realize it's a trap. And there's no simple tool that warns them before they click.</div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-big" style="color:#C82828">3.4B+</div><div class="stat-label">Fake Emails Sent Every Day</div><div class="stat-change" style="color:#C82828">And the number keeps growing</div></div>
+        <div class="stat-card"><div class="stat-big" style="color:#E8A44A">60s</div><div class="stat-label">How Fast People Click</div><div class="stat-change" style="color:#E8A44A">Most click within 1 minute</div></div>
+        <div class="stat-card"><div class="stat-big" style="color:#0B3E73">$4.9M</div><div class="stat-label">Average Loss Per Attack</div><div class="stat-change" style="color:#0B3E73">IBM Security Report 2023</div></div>
+      </div>
+
+      <div style="margin-top:20px;margin-bottom:20px">
+        <div style="font-weight:800;font-size:1rem;color:#0B3E73;margin-bottom:14px;text-align:center">Our Color Coding System — Instantly Understand the Risk</div>
+        <div class="color-grid">
+          <div class="color-card" style="background:linear-gradient(135deg,rgba(200,40,40,.08),rgba(200,40,40,.15));border:2px solid rgba(200,40,40,.25);border-top:4px solid #C82828">
+            <div class="color-icon" style="background:linear-gradient(135deg,#C82828,#991B1B);box-shadow:0 4px 16px rgba(200,40,40,.3)">!</div>
+            <div style="font-weight:800;font-size:1.05rem;color:#C82828;margin-bottom:6px">RED — Danger</div>
+            <div style="font-size:.84rem;color:#2C4257;line-height:1.6">High risk link. Do NOT click. Very likely a scam or phishing attempt.</div>
+          </div>
+          <div class="color-card" style="background:linear-gradient(135deg,rgba(232,164,74,.08),rgba(232,164,74,.15));border:2px solid rgba(232,164,74,.25);border-top:4px solid #E8A44A">
+            <div class="color-icon" style="background:linear-gradient(135deg,#E8A44A,#D4873A);box-shadow:0 4px 16px rgba(232,164,74,.3)">?</div>
+            <div style="font-weight:800;font-size:1.05rem;color:#D4873A;margin-bottom:6px">YELLOW — Caution</div>
+            <div style="font-size:.84rem;color:#2C4257;line-height:1.6">Suspicious link. Be careful. Check twice before clicking.</div>
+          </div>
+          <div class="color-card" style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(16,185,129,.15));border:2px solid rgba(16,185,129,.25);border-top:4px solid #10B981">
+            <div class="color-icon" style="background:linear-gradient(135deg,#10B981,#059669);box-shadow:0 4px 16px rgba(16,185,129,.3)">✓</div>
+            <div style="font-weight:800;font-size:1.05rem;color:#059669;margin-bottom:6px">GREEN — Safe</div>
+            <div style="font-size:.84rem;color:#2C4257;line-height:1.6">Link looks safe. No warning signs found. You can proceed.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-box">
+        <div style="font-weight:800;font-size:1rem;color:#C82828;margin-bottom:14px">What's the Problem?</div>
+        <div style="font-size:.9rem;color:#2C4257;line-height:1.9">
+          <b>1. People can't tell real links from fake ones</b><br>A fake link like "amaz0n-secure-login.com" looks almost like Amazon. Scammers hide dangerous links inside normal-looking messages, and most people can't spot the difference.<br><br>
+          <b>2. Current tools are too complicated</b><br>Tools like VirusTotal exist — but they show technical reports that normal people don't understand. You have to copy-paste the link, wait for results, and then figure out what the numbers mean.<br><br>
+          <b>3. Nobody warns you BEFORE you click</b><br>By the time a link gets reported as dangerous, thousands of people have already clicked on it. There's no tool that catches the link and warns you first.<br><br>
+          <b>4. People don't learn from their mistakes</b><br>Even if you avoid one scam, you won't know what to look for next time. No tool teaches you WHY a link was dangerous — they just block it and move on.
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:24px">
+        <button class="btn-primary" onclick="navigateTo('solution')">See Our Solution →</button>
+        <div style="margin-top:12px;font-size:.85rem;color:#4A6279">Click the button above to see how <b>Veylix</b> solves all of these problems</div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE: OUR SOLUTION ========== -->
+    <section class="page" id="page-solution" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxH" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxH)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#0B3E73,#1565C0)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="2.5" fill="#fff"/><line x1="16" y1="16" x2="24" y2="10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
+        </div>
+        <div><div class="ph-title">Our Solution — Scan URL</div><div class="ph-desc">Paste any message and we'll check if the link is safe or dangerous</div></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="sim">Simulated incoming link</button>
+        <button class="tab" data-tab="manual">Paste &amp; scan a message</button>
+      </div>
+
+      <!-- Tab: Simulated -->
+      <div class="tab-content" id="tab-sim">
+        <div class="sim-controls">
+          <div class="sim-field">
+            <label>Message source</label>
+            <select id="simSource">
+              <option>WhatsApp</option><option>Gmail</option><option>SMS</option><option>Social Media</option>
+            </select>
+          </div>
+          <div class="sim-field" style="flex:2">
+            <label>Scenario</label>
+            <select id="simScenario">
+              <option>Random</option>
+            </select>
+          </div>
+          <button class="btn-primary" id="btnSimulate" style="align-self:flex-end">Simulate Incoming Link</button>
+        </div>
+
+        <div class="two-col">
+          <div class="col-left">
+            <div class="panel-h">📨 Incoming message — <span id="simSourceLabel">WhatsApp</span></div>
+            <div id="simMessageArea">
+              <div class="empty">No message yet.<br>Click <b>Simulate Incoming Link</b> to start.</div>
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="panel-h">
+              <svg width="20" height="20" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxP" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxP)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              Veylix analysis
+            </div>
+            <div id="simResultArea">
+              <div class="empty">Veylix is waiting for an incoming link.</div>
+            </div>
+          </div>
+        </div>
+        <div id="simExtraAnalysis"></div>
+      </div>
+
+      <!-- Tab: Manual -->
+      <div class="tab-content" id="tab-manual" style="display:none">
+        <div class="vx-note">Paste the <b>whole message</b> you received from WhatsApp, Gmail, SMS or social media. Veylix will automatically find and analyse any link inside it.</div>
+        <textarea id="manualInput" placeholder="Hey! You won a free iPhone 🎉 Click here to claim: http://free-prize.example.com/win" rows="4"></textarea>
+        <button class="btn-primary" id="btnManualScan" style="width:100%;margin-top:8px">🔍 Scan Message</button>
+        <div id="manualResultArea">
+          <div class="empty" style="margin-top:16px">Paste a message above and click <b>🔍 Scan Message</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE: OBJECTIVES ========== -->
+    <section class="page" id="page-objectives" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxO" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxO)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#10B981,#3B82F6)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="7" fill="none" stroke="#fff" stroke-width="1.5" opacity=".5"/><circle cx="16" cy="16" r="2.5" fill="#fff"/></svg>
+        </div>
+        <div><div class="ph-title">Project Objectives</div><div class="ph-desc">What Veylix aims to achieve</div></div>
+      </div>
+      <div class="obj-grid" id="objectivesGrid"></div>
+    </section>
+
+    <!-- ========== PAGE: SMART TECHNIQUES ========== -->
+    <section class="page" id="page-techniques" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxT" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxT)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#fff"/></svg>
+        </div>
+        <div><div class="ph-title">Smart Techniques Used</div><div class="ph-desc">The brain behind Veylix — how it decides if a link is safe or dangerous</div></div>
+      </div>
+      <div class="vx-note"><b>Click any card below</b> to flip it and see how each technique works behind the scenes.</div>
+      <div class="flip-grid" id="flipGrid"></div>
+    </section>
+
+    <!-- ========== PAGE: SYSTEM ARCHITECTURE ========== -->
+    <section class="page" id="page-architecture" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxA)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#0B3E73,#7C3AED)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="8" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><rect x="4" y="20" width="10" height="8" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><rect x="18" y="20" width="10" height="8" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><line x1="12" y1="12" x2="9" y2="20" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="12" x2="23" y2="20" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div><div class="ph-title">System Architecture</div><div class="ph-desc">How Veylix works — step by step</div></div>
+      </div>
+      <div class="vx-note">This flowchart shows what happens behind the scenes when you scan a URL with Veylix — from the moment you paste a message to the final result.</div>
+      <div id="flowchart"></div>
+      <div class="depth-card" style="margin-top:24px;text-align:center">
+        <div style="font-weight:800;color:#0B3E73;font-size:.95rem;margin-bottom:8px">Technologies Behind the Architecture</div>
+        <div style="font-size:.85rem;color:#4A6279;line-height:1.8"><b>Python</b> — Core programming language for all logic<br><b>Vercel</b> — Serverless deployment platform<br><b>Custom Rule Engine</b> — Our own risk_engine.py that evaluates URLs<br><b>URL Analyzer</b> — Extracts and parses links from raw text<br><b>HTML/CSS/JS + SVG</b> — Glassmorphism UI with custom visualizations</div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE: NEXT MILESTONE ========== -->
+    <section class="page" id="page-milestone" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxM" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxM)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#F59E0B,#10B981)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><path d="M16 4 L19 12 L16 10 L13 12 Z" fill="#fff"/><path d="M10 14 L16 10 L22 14 L20 28 H12 Z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <div><div class="ph-title">Project Timeline &amp; Next Milestone</div><div class="ph-desc">What we've completed and what's coming next</div></div>
+      </div>
+      <div id="timeline"></div>
+    </section>
+
+    <!-- ========== PAGE: COMPARISON ========== -->
+    <section class="page" id="page-comparison" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxC" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxC)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#0EA5E9,#10B981)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><line x1="16" y1="4" x2="16" y2="8" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="10" r="3" fill="none" stroke="#fff" stroke-width="1.8"/><line x1="6" y1="14" x2="26" y2="14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div><div class="ph-title">Comparison to Other Products</div><div class="ph-desc">How Veylix is different from existing tools</div></div>
+      </div>
+      <div id="comparisonTable"></div>
+      <div class="depth-card" style="margin-top:16px">
+        <div style="font-weight:800;color:#0B3E73;font-size:.95rem;margin-bottom:10px">Summary</div>
+        <div style="font-size:.88rem;color:#2C4257;line-height:1.8"><b>VirusTotal</b> is powerful but designed for security professionals — normal people can't understand its reports.<br><b>Google Safe Browsing</b> works silently in the background — it just blocks without explaining anything.<br><b>Veylix</b> is designed for everyday users — it explains results in simple language, teaches you why a link is dangerous, and gives you clear steps on what to do next. It's the only tool that combines detection + education.</div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE: STATISTICS ========== -->
+    <section class="page" id="page-statistics" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxSt" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxSt)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#10B981,#0EA5E9)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><path d="M16 3 L27 10 L27 22 L22 28 L10 28 L5 22 L5 10 Z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="15" r="2" fill="#fff"/></svg>
+        </div>
+        <div><div class="ph-title">Session Statistics</div><div class="ph-desc">Live counters from your current scanning session</div></div>
+      </div>
+      <div id="statsArea"></div>
+    </section>
+
+    <!-- ========== PAGE: SAFETY TIPS ========== -->
+    <section class="page" id="page-tips" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxTi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxTi)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#F59E0B,#EC4899)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><path d="M16 3 L26 8 V16 C26 23 21 27 16 29 C11 27 6 23 6 16 V8 Z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="14" r="3.5" fill="none" stroke="#fff" stroke-width="1.8"/><line x1="16" y1="18" x2="16" y2="23" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div><div class="ph-title">Cybersecurity Tips</div><div class="ph-desc">Learn how to protect yourself from online threats</div></div>
+      </div>
+      <div class="tips-grid" id="tipsGrid"></div>
+      <div style="margin-top:2rem;padding:18px 22px;border-radius:14px;background:rgba(11,62,115,.05);border:1px solid rgba(11,62,115,.1)">
+        <div style="font-weight:800;font-size:.92rem;color:#0B3E73;margin-bottom:8px">🎓 Why Awareness Matters</div>
+        <div style="font-size:.88rem;color:#2C4257;line-height:1.8">According to cybersecurity reports, <b>over 90% of data breaches</b> start with a phishing attack. Most victims click malicious links within <b>60 seconds</b> of receiving them. By learning to recognize the warning signs, you can protect yourself and others from falling victim to these attacks. Veylix helps you build this awareness by showing exactly what makes a link suspicious.</div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE: ABOUT ========== -->
+    <section class="page" id="page-about" style="display:none">
+      <div class="vx-title-bar">
+        <svg width="56" height="56" viewBox="0 0 40 40" style="flex-shrink:0"><defs><linearGradient id="vxAb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxAb)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="vx-title-name">Veylix</span>
+      </div>
+      <div class="vx-sub">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+      <div class="vx-note"><b>Prototype simulation.</b> Veylix does not connect to real WhatsApp, Gmail, SMS or social-media accounts. The messages below are simulated to show how automatic incoming-link detection would work. Links are only analysed as text and are never opened.</div>
+      <div class="page-header">
+        <div class="ph-icon" style="background:linear-gradient(135deg,#FFB8C6,#C6B6F0)">
+          <svg width="22" height="22" viewBox="0 0 32 32"><path d="M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z" fill="none" stroke="#3C2A5C" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.5" fill="#3C2A5C"/></svg>
+        </div>
+        <div><div class="ph-title">About Veylix</div><div class="ph-desc">Project information, technologies, and team</div></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon" style="background:rgba(11,62,115,.08)">🎯</div>
+          <div class="about-h">What is Veylix?</div>
+          <div class="about-p">Veylix is an intelligent URL threat detection and risk analysis tool. It scans links received via WhatsApp, Gmail, SMS and social media to detect phishing, malware, and scam attempts before you click. The name "Veylix" combines "Vey" (Verify) and "Lix" (Links) — meaning "Verify your Links."</div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon" style="background:rgba(16,185,129,.08)">⚙️</div>
+          <div class="about-h">How Does It Work?</div>
+          <div class="about-p">Veylix uses a multi-layered analysis approach: pattern matching to detect known phishing patterns, heuristic analysis for suspicious behaviors, domain reputation checking against known threats, and SSL verification to ensure secure connections. Each layer contributes to a risk score from 0–100.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon" style="background:rgba(232,164,74,.08)">🏷️</div>
+          <div class="about-h">Technologies Used</div>
+          <div class="about-p"><b>Python</b> — core programming language<br><b>Vercel</b> — serverless deployment platform<br><b>Custom Rule Engine</b> — rule-based URL analysis<br><b>CSS + SVG</b> — glassmorphism UI with inline visualizations<br><b>GitHub</b> — version control and deployment</div>
+        </div>
+        <div class="about-card">
+          <div class="about-icon" style="background:rgba(200,40,40,.06)">👩‍💻</div>
+          <div class="about-h">Built By</div>
+          <div class="about-p">Created as part of the <b>MDC Project</b> for CSE Cybersecurity, Batch 2025.<br><br><b>Maitreyi</b> — 2025A7R033<br><b>Rachna Sharma</b> — 2025A7R047<br><br>Under the guidance of NCSC (National Cyber Security Centre) curriculum.</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;padding:18px 22px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.06);text-align:center">
+        <svg width="52" height="52" viewBox="0 0 40 40" style="margin-bottom:12px"><defs><linearGradient id="vxF" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE2A9"/><stop offset="50%" stop-color="#FFB8C6"/><stop offset="100%" stop-color="#C6B6F0"/></linearGradient></defs><path d="M20 4 L32 12 V28 L20 36 L8 28 V12 Z" fill="url(#vxF)" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 18 L18 22 L26 14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <div style="margin-bottom:4px"><span class="vx-badge" style="font-size:1.3rem;padding:6px 22px">Veylix</span> <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;color:#0B3E73;margin-left:4px">v1.0</span></div>
+        <div style="font-size:.85rem;color:#4A6279">Intelligent URL Threat Detection &amp; Risk Analysis</div>
+        <div style="font-size:.78rem;color:#8B9BB5;margin-top:8px">Prototype — NCSC Cybersecurity Project 2025</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <hr style="border:none;border-top:1px solid #B8C6D4;margin-bottom:12px">
+      <div style="text-align:center;color:#4A6279;font-size:.85rem;line-height:1.8">
+        &copy; 2025 <span class="vx-badge" style="font-size:.85rem;padding:3px 14px">Veylix</span> — Part of MDC Project | CSE Cybersecurity | Batch 2025<br>
+        <span style="color:#2C4257"><b>Maitreyi</b> (2025A7R033) &nbsp;&bull;&nbsp; <b>Rachna Sharma</b> (2025A7R047)</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
