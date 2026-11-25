@@ -61,6 +61,9 @@
       font-family:inherit;font-weight:700;font-size:12.5px;padding:6px 14px;border-radius:999px;cursor:pointer}
     .vx-logout:hover{background:#fff}
     @media(max-width:820px){#vxLogin .lw{grid-template-columns:1fr}#vxLogin .brand{display:none}#vxLogin .form{padding:34px 24px}}
+    /* sign-in form only */
+    #vxLogin .brand,#vxLogin .demo{display:none!important}
+    #vxLogin .lw{grid-template-columns:1fr;max-width:460px}
   </style>
 </head>
 <body>
@@ -548,7 +551,7 @@
       this.textContent=pw.type==='password'?'SHOW':'HIDE';
     };
     document.getElementById('vxForgot').onclick=function(){
-      showErr('Demo mode: use demo@veylix.com / Veylix@2026');
+      showErr('Please contact the administrator to reset your password.');
     };
     document.getElementById('vxGuest').onclick=function(){set('guest');hide()};
     form.onsubmit=function(e){
@@ -557,7 +560,7 @@
       if(!em||!pa){showErr('Please enter your email and password.');return}
       if(mode==='in'){
         if(em===DEMO_EMAIL && pa===DEMO_PASS){set(em);hide();form.reset()}
-        else showErr('Wrong email or password. Use the demo account shown above.');
+        else showErr('Wrong email or password.');
       }else{
         if(pa.length<6){showErr('Password must be at least 6 characters.');return}
         set(em);hide();form.reset();
